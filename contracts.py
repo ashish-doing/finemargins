@@ -97,7 +97,7 @@ class OfficiatingScenario:
     tournament: str
     match: str
     minute: int
-    category: Literal["penalty", "offside", "handball", "red_card", "goal_line"]
+    category: Literal["penalty", "offside", "handball", "red_card", "goal_line", "discipline", "shootout"]
     description: str                      # factual, in our own words
     relevant_law: LawCitation
     historical_overturn_rate: Optional[float]   # from FIFA technical/VAR reports

@@ -58,6 +58,8 @@ cat_icons = {
     "offside": "🚩",
     "handball": "✋",
     "red_card": "🟥",
+    "discipline": "🟨",
+    "shootout": "🎯",
 }
 
 selected_id = st.radio(

@@ -1,0 +1,18 @@
+[theme]
+base            = "dark"
+primaryColor    = "#0f62fe"
+backgroundColor = "#0d0d0d"
+secondaryBackgroundColor = "#161616"
+textColor       = "#f4f4f4"
+font            = "sans serif"
+
+[server]
+# Let Railway inject $PORT via the Procfile; don't hard-code here.
+# headless = true is required for cloud deployment
+headless        = true
+enableCORS      = false
+enableXsrfProtection = true
+
+[browser]
+# Prevents Streamlit from trying to open a browser tab on Railway
+gatherUsageStats = false

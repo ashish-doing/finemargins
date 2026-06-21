@@ -1,46 +1,114 @@
 [
   {
-    "scenario_id": "wc2022_jpn_esp_goalline",
-    "title": "Japan's second goal vs Spain — goal-line check",
-    "tournament": "2022 FIFA World Cup",
-    "match": "Japan vs Spain, Group Stage",
-    "minute": 51,
-    "category": "goal_line",
-    "description": "Before Ao Tanaka scored to make it 2-1, VAR reviewed whether Kaoru Mitoma's preceding touch kept the ball in play, since replays suggested the ball may have fully crossed the byline. The goal-line camera angle was used to judge whether any part of the ball remained over the line. The on-field decision (goal allowed) stood after review. This is one of the most scrutinized VAR calls of the tournament because the broadcast angle shown to fans differed from the angle VAR actually used.",
+    "scenario_id": "ARG_NED_2022_QF_LAHOZ_CONTROL",
+    "title": "Battle of Lusail: Referee Control Breakdown",
+    "tournament": "FIFA World Cup Qatar 2022",
+    "match": "Argentina vs Netherlands — Quarterfinal, Lusail Stadium, 9 Dec 2022",
+    "minute": 88,
+    "category": "discipline",
+    "description": "In the 88th minute, Argentina's Leandro Paredes fouled Nathan Aké near the Dutch bench, then deliberately kicked the dead ball into the Netherlands substitutes' area, triggering a mass confrontation. Referee Antonio Mateu Lahoz had already issued 12 yellow cards by that point; the match ultimately set a World Cup record of 18 yellow cards (plus one red for Denzel Dumfries) across 48 fouls called. VAR was not used to upgrade the Paredes sanction — discipline incidents of this type fall outside the four VAR-reviewable categories.",
     "relevant_law": {
-      "law_number": 9,
-      "law_title": "The Ball In and Out of Play",
-      "excerpt": "PLACEHOLDER — Helper Chat 2 fills this from the real Docling-parsed text of Law 9, p.95 of the 2025/26 Laws of the Game. Paraphrase only, do not copy IFAB text verbatim.",
-      "source_page": 95
+      "law_number": 12,
+      "law_title": "Fouls and Misconduct",
+      "excerpt": "TODO — exact IFAB 2025/26 wording pending Docling extraction. Covers unsporting behaviour including provocative, contemptuous, or inflammatory gestures; the applicable clause is the deliberate act of provoking a reaction, distinct from the foul itself.",
+      "source_page": 55
     },
     "historical_overturn_rate": null,
-    "overturn_rate_source": "TODO: extract from FIFA's official VAR statistics report (e.g. https://fifa-backend.pressfire.net/media/newsletter/FWC18-Refereeing-VAR-Report-Statistics-Finals-STATS.pdf for the 2018 tournament, or the equivalent 2022 report) — category should be 'ball out of play / goal-line' reviews specifically, not the overall review rate.",
+    "overturn_rate_source": "No VAR review was triggered for this incident. Discipline/referee-control incidents are not among the four VAR-reviewable categories (goals, penalties, direct red cards, mistaken identity) unless a missed red-card sanction is involved. Source: ESPN full VAR review log, all 64 matches (espn.com, Dale Johnson, updated 17 Dec 2022).",
     "what_the_model_does_not_know": [
-      "The exact camera angle and frame rate used by the actual VAR booth",
-      "Whether the broadcast angle shown publicly matches the angle officials used",
-      "Sub-centimeter ball position when partially obscured by a player's body"
+      "Referee match reports, FIFA disciplinary committee minutes, or internal VAR audio from the Lusail match",
+      "Whether Lahoz received real-time advice from the VAR room during the confrontation",
+      "The precise chain of communication or timing that allowed the situation to escalate",
+      "Psychological pressure dynamics — crowd, match stakes, accumulated tension — are not features in any current model"
     ]
   },
   {
-    "scenario_id": "wc2022_final_dembele_penalty",
-    "title": "Dembele's challenge on Di Maria — penalty stands",
-    "tournament": "2022 FIFA World Cup",
-    "match": "Argentina vs France, Final",
-    "minute": 22,
-    "category": "penalty",
-    "description": "Referee Szymon Marciniak awarded Argentina a penalty after Ousmane Dembele made contact with Angel Di Maria inside the box while contesting the ball. It was a marginal, widely debated call — replays showed limited contact and disputed intent — but VAR protocol gives heavy deference to an on-field decision once the referee has made a clear call and there is contact; VAR Tomasz Kwiatkowski did not intervene. Messi converted the resulting penalty.",
+    "scenario_id": "ARG_NED_2022_QF_SHOOTOUT_GAMESMANSHIP",
+    "title": "Argentina vs Netherlands: Penalty-Shootout Gamesmanship",
+    "tournament": "FIFA World Cup Qatar 2022",
+    "match": "Argentina vs Netherlands — Quarterfinal penalty shootout, Lusail Stadium, 9 Dec 2022",
+    "minute": 120,
+    "category": "shootout",
+    "description": "During the shootout, Argentine goalkeeper Emiliano Martínez used deliberate delay and distraction tactics — feinting handing the ball to Steven Berghuis before dropping it (Berghuis's kick was saved), and prolonged staring before Teun Koopmeiners's kick. The match finished Argentina 4–3 on penalties (2–2 after extra time). The officiating question: at what point should a referee intervene in goalkeeper gamesmanship under the current Laws, and is VAR capable of flagging delay infractions in real time?",
     "relevant_law": {
       "law_number": 14,
       "law_title": "The Penalty Kick",
-      "excerpt": "PLACEHOLDER — Helper Chat 2 fills this from the real Docling-parsed text of Law 14, p.79, and cross-references Law 12 (Fouls and Misconduct, p.55) for the foul-recognition criteria. Paraphrase only.",
+      "excerpt": "TODO — exact IFAB 2025/26 wording pending Docling extraction. The goalkeeper may move laterally before the kick but may not engage in deliberate time-wasting or unsporting distraction; IFAB's 2019 amendments clarified feinting rules.",
       "source_page": 79
     },
     "historical_overturn_rate": null,
-    "overturn_rate_source": "TODO: extract the 'on-field decision retained' rate specifically for penalty-related VAR checks from the official FIFA technical/VAR report — this scenario is a strong example of the real, documented VAR principle that referees' on-field penalty calls are rarely overturned absent clear and obvious error.",
+    "overturn_rate_source": "No VAR review occurred. Shootout gamesmanship is not a reviewable VAR category absent a direct red-card offence; Dumfries's red card was issued on-field, after the match was decided, without VAR review. Source: ESPN VAR review log (espn.com, Dec 2022).",
     "what_the_model_does_not_know": [
-      "The defender's intent, which the Laws explicitly say should not factor into a penalty decision",
-      "How VAR's threshold of 'clear and obvious error' was actually weighed by this specific official in this moment",
-      "Crowd noise, pressure, and the live pace of play the referee experienced versus a replay viewer"
+      "The psychological effect of goalkeeper tactics on a kicker's conversion probability",
+      "Goalkeeper positioning or movement-timing sensor data during the shootout",
+      "Whether gamesmanship materially influenced a specific missed kick versus normal variation",
+      "Any post-tournament FIFA guidance to referees on managing goalkeeper delay tactics"
+    ]
+  },
+  {
+    "scenario_id": "TUN_FRA_2022_GRIEZMANN_DISALLOWED",
+    "title": "Griezmann's 98th-Minute Goal Disallowed — Deliberate Play",
+    "tournament": "FIFA World Cup Qatar 2022",
+    "match": "Tunisia vs France — Group D, Education City Stadium, 30 Nov 2022",
+    "minute": 98,
+    "category": "offside",
+    "description": "Antoine Griezmann volleyed in what appeared to be an equaliser in second-half stoppage time. Griezmann had been offside from the original pass, but Tunisian defender Montassar Talbi challenged for the loose ball before it fell to him. VAR ruled Talbi's touch was not a 'deliberate play' that would reset the offside phase, and disallowed the goal. A procedural wrinkle: the referee had briefly restarted play before blowing full time, and VAR protocol generally prevents review after a restart — yet the review proceeded. FIFA rejected France's formal appeal on 5 December 2022.",
+    "relevant_law": {
+      "law_number": 11,
+      "law_title": "Offside",
+      "excerpt": "TODO — exact IFAB 2025/26 wording pending Docling extraction. A defender's 'deliberate play' — defined as having control over the ball's direction, not merely attempting to play it — resets the offside phase; stretched or uncontrolled deflections do not qualify.",
+      "source_page": 51
+    },
+    "historical_overturn_rate": 0.926,
+    "overturn_rate_source": "Tournament-wide VAR overturn rate: 25 of 27 total VAR review interventions at Qatar 2022 changed the on-field decision (≈92.6%); 2 reviews were rejected by the referee at the monitor. This is the overall rate across all four reviewable categories — ESPN did not report a separate offside-only overturn percentage. Source: ESPN full match-by-match VAR review log (espn.com, Dale Johnson, updated 17 Dec 2022).",
+    "what_the_model_does_not_know": [
+      "The intent or physical control behind Talbi's header — the core subjective 'deliberate play' judgement",
+      "Referee-VAR audio or the specific video frames reviewed at the monitor",
+      "The procedural validity question of whether review should have occurred after the apparent restart"
+    ]
+  },
+  {
+    "scenario_id": "QAT_ECU_2022_SAOT_VALENCIA_OFFSIDE",
+    "title": "Opening Match SAOT Offside — Valencia Disallowed in Minute 3",
+    "tournament": "FIFA World Cup Qatar 2022",
+    "match": "Qatar vs Ecuador — Group A, Al Bayt Stadium, 20 Nov 2022",
+    "minute": 3,
+    "category": "offside",
+    "description": "Enner Valencia headed Ecuador in front in the third minute — it would have been the fastest goal in World Cup history. The on-field assistant referee did not flag, but Semi-Automated Offside Technology (SAOT) — 12 optical tracking cameras, 29 skeletal points per player — found Ecuador's Michael Estrada fractionally offside one phase earlier. Neither the human assistant referee nor standard TV replay made the infringement visible; only the SAOT 3D animation confirmed it. This was the first major tournament test of SAOT.",
+    "relevant_law": {
+      "law_number": 11,
+      "law_title": "Offside",
+      "excerpt": "TODO — exact IFAB 2025/26 wording pending Docling extraction. Offside position is defined by any part of the head, body, or feet (not arms) being nearer the opponents' goal line than both the ball and the second-last opponent.",
+      "source_page": 51
+    },
+    "historical_overturn_rate": 0.926,
+    "overturn_rate_source": "Tournament-wide VAR overturn rate: 25 of 27 total VAR review interventions at Qatar 2022 changed the on-field decision (≈92.6%). This incident was itself one of those 25 overturns (a VAR reversal of an on-field non-call). Source: ESPN full VAR review log (espn.com, Dec 2022); TNT Sports SAOT explainer (20 Nov 2022).",
+    "what_the_model_does_not_know": [
+      "SAOT skeletal tracking data or sub-centimetre positional measurements",
+      "The 3D avatar calculations that flagged the offside position",
+      "Whether this level of precision reflects the intent of Law 11 versus its literal application"
+    ]
+  },
+  {
+    "scenario_id": "BRA_SUI_2022_VINICIUS_OFFSIDE_DISALLOWED",
+    "title": "Vinicius Jr's Goal Disallowed for Offside via SAOT",
+    "tournament": "FIFA World Cup Qatar 2022",
+    "match": "Brazil vs Switzerland — Group G, Stadium 974, 28 Nov 2022",
+    "minute": 64,
+    "category": "offside",
+    "description": "Vinicius Jr. converted what appeared to be Brazil's second goal in the 64th minute. SAOT flagged an offside in the build-up that no assistant referee had raised and that wasn't visible on broadcast replay — only the 3D animation confirmed it. The goal was disallowed; Brazil won 1–0 via a later Casemiro goal. This was one of several early-tournament incidents establishing the pattern of SAOT overturning calls no human official had flagged in real time.",
+    "relevant_law": {
+      "law_number": 11,
+      "law_title": "Offside",
+      "excerpt": "TODO — exact IFAB 2025/26 wording pending Docling extraction. As with other SAOT decisions, the determining question is whether any non-arm body part is fractionally ahead of the second-last defender at the moment of the pass.",
+      "source_page": 51
+    },
+    "historical_overturn_rate": 0.926,
+    "overturn_rate_source": "Tournament-wide VAR overturn rate: 25 of 27 total VAR review interventions at Qatar 2022 changed the on-field decision (≈92.6%). Source: ESPN full VAR review log (espn.com, Dec 2022); TNT Sports SAOT explainer (20 Nov 2022).",
+    "what_the_model_does_not_know": [
+      "The SAOT positional data underlying this specific call",
+      "Sub-frame limb-position measurements — StatsBomb event data records only the outcome, not the measurement",
+      "How SAOT's precision threshold changes disallowance frequency relative to pre-SAOT tournaments"
     ]
   }
 ]
