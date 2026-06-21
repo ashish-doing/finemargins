@@ -1,0 +1,47 @@
+{
+  "model_a_penalty_pressure": {
+    "model": "logistic_regression",
+    "n": 202,
+    "cv_auc": 0.5183,
+    "cv_brier_score": 0.2157,
+    "cv_log_loss": 0.6238,
+    "coefficients": {
+      "is_shootout": -0.517,
+      "is_sudden_death": 0.214,
+      "is_knockout": -0.104,
+      "stage_weight": 0.456
+    },
+    "overall_conversion": 0.6881,
+    "shootout_conversion": 0.6504,
+    "shootout_conversion_95ci": [
+      0.561,
+      0.7317
+    ],
+    "ingame_conversion": 0.7468,
+    "ingame_conversion_95ci": [
+      0.6456,
+      0.8354
+    ],
+    "sudden_death_conversion": 0.7143,
+    "sudden_death_n": 14
+  },
+  "model_b_late_shot_residual": {
+    "model": "logistic_regression_with_xg",
+    "n": 1228,
+    "cv_auc": 0.7728,
+    "cv_brier_score": 0.0665,
+    "baseline_xg_only_auc": 0.8072,
+    "baseline_xg_only_brier": 0.0629,
+    "coefficients": {
+      "xg": 5.226,
+      "is_knockout": -0.228,
+      "is_extra_time": -0.349,
+      "stage_weight": 0.525,
+      "minutes_remaining": -0.03
+    },
+    "sum_expected_goals": 110.87,
+    "actual_goals": 103,
+    "knockout_residual": -0.0071,
+    "group_stage_residual": -0.0061
+  }
+}

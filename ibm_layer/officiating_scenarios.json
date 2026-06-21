@@ -1,0 +1,46 @@
+[
+  {
+    "scenario_id": "wc2022_jpn_esp_goalline",
+    "title": "Japan's second goal vs Spain — goal-line check",
+    "tournament": "2022 FIFA World Cup",
+    "match": "Japan vs Spain, Group Stage",
+    "minute": 51,
+    "category": "goal_line",
+    "description": "Before Ao Tanaka scored to make it 2-1, VAR reviewed whether Kaoru Mitoma's preceding touch kept the ball in play, since replays suggested the ball may have fully crossed the byline. The goal-line camera angle was used to judge whether any part of the ball remained over the line. The on-field decision (goal allowed) stood after review. This is one of the most scrutinized VAR calls of the tournament because the broadcast angle shown to fans differed from the angle VAR actually used.",
+    "relevant_law": {
+      "law_number": 9,
+      "law_title": "The Ball In and Out of Play",
+      "excerpt": "PLACEHOLDER — Helper Chat 2 fills this from the real Docling-parsed text of Law 9, p.95 of the 2025/26 Laws of the Game. Paraphrase only, do not copy IFAB text verbatim.",
+      "source_page": 95
+    },
+    "historical_overturn_rate": null,
+    "overturn_rate_source": "TODO: extract from FIFA's official VAR statistics report (e.g. https://fifa-backend.pressfire.net/media/newsletter/FWC18-Refereeing-VAR-Report-Statistics-Finals-STATS.pdf for the 2018 tournament, or the equivalent 2022 report) — category should be 'ball out of play / goal-line' reviews specifically, not the overall review rate.",
+    "what_the_model_does_not_know": [
+      "The exact camera angle and frame rate used by the actual VAR booth",
+      "Whether the broadcast angle shown publicly matches the angle officials used",
+      "Sub-centimeter ball position when partially obscured by a player's body"
+    ]
+  },
+  {
+    "scenario_id": "wc2022_final_dembele_penalty",
+    "title": "Dembele's challenge on Di Maria — penalty stands",
+    "tournament": "2022 FIFA World Cup",
+    "match": "Argentina vs France, Final",
+    "minute": 22,
+    "category": "penalty",
+    "description": "Referee Szymon Marciniak awarded Argentina a penalty after Ousmane Dembele made contact with Angel Di Maria inside the box while contesting the ball. It was a marginal, widely debated call — replays showed limited contact and disputed intent — but VAR protocol gives heavy deference to an on-field decision once the referee has made a clear call and there is contact; VAR Tomasz Kwiatkowski did not intervene. Messi converted the resulting penalty.",
+    "relevant_law": {
+      "law_number": 14,
+      "law_title": "The Penalty Kick",
+      "excerpt": "PLACEHOLDER — Helper Chat 2 fills this from the real Docling-parsed text of Law 14, p.79, and cross-references Law 12 (Fouls and Misconduct, p.55) for the foul-recognition criteria. Paraphrase only.",
+      "source_page": 79
+    },
+    "historical_overturn_rate": null,
+    "overturn_rate_source": "TODO: extract the 'on-field decision retained' rate specifically for penalty-related VAR checks from the official FIFA technical/VAR report — this scenario is a strong example of the real, documented VAR principle that referees' on-field penalty calls are rarely overturned absent clear and obvious error.",
+    "what_the_model_does_not_know": [
+      "The defender's intent, which the Laws explicitly say should not factor into a penalty decision",
+      "How VAR's threshold of 'clear and obvious error' was actually weighed by this specific official in this moment",
+      "Crowd noise, pressure, and the live pace of play the referee experienced versus a replay viewer"
+    ]
+  }
+]
