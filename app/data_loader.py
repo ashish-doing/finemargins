@@ -24,7 +24,7 @@ def load_player_profiles():
 
 @st.cache_data
 def load_metrics():
-    with open(BASE / "pipeline/model_artifacts/metrics.json") as f:
+    with open(BASE / "pipeline/model_artifacts/metrics.json", encoding="utf-8") as f:
         return json.load(f)
 
 @st.cache_resource
@@ -34,5 +34,5 @@ def load_models():
 
 @st.cache_data
 def load_scenarios():
-    with open(BASE / "ibm_layer/officiating_scenarios.json") as f:
+    with open(BASE / "ibm_layer/officiating_scenarios.json", encoding="utf-8") as f:
         return json.load(f)
