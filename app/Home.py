@@ -131,6 +131,14 @@ components.html("""
 </div>
 """, height=330)
 
+# ── 2026 World Cup Live Banner ────────────────────────────────────────────────
+st.info(
+    "🏆 **The 2026 FIFA World Cup is live** — hosted across the USA, Canada & Mexico. "
+    "Group stage final matchdays wrap June 26–27, with the Round of 32 already underway. "
+    "This app analyses the historical data that built these teams' reputations. "
+    "Use the lenses below to benchmark today's moments against real World Cup patterns."
+)
+
 # ── Live KPIs ─────────────────────────────────────────────────────────────────
 pen = load_penalties()
 late = load_late_shots()
@@ -216,3 +224,92 @@ with right:
         "FIFA Women's World Cup 2023 (competition 72, season 107). "
         "No scraping; direct JSON from the public GitHub repo."
     )
+
+# ── User Guide ────────────────────────────────────────────────────────────────
+st.markdown("---")
+st.markdown("### 📖 How to use FineMargins")
+
+with st.expander("⚡ Pressure Lens"):
+    st.markdown("""
+**Two tabs: Penalty Pressure and Late-Game Shots.**
+
+*Penalty Pressure* splits kicks by context — in-game vs shootout, early vs sudden-death round —
+and shows how conversion rates shift under each pressure type. The bar charts are real counts
+from 202 kicks; the percentage labels are not model predictions, they're observed rates.
+
+*Late-Game Shots* plots 1,228 shots from the 75th minute onward. Each point is a real shot;
+the colour encodes whether it was scored. The residual column shows how much the actual outcome
+differed from StatsBomb's xG expectation — negative means the shot underperformed the model,
+which is the pressure signal this app is built around.
+
+**SHAP waterfall chart** — this shows *why* the model gave a particular shot its xG residual
+score. Each bar is one feature (e.g. shot distance, match minute, knockout stage flag) pushing
+the prediction up (red) or down (blue) from the baseline. The longer the bar, the more that
+feature mattered for this specific shot. It's not a global ranking — it's an explanation for
+one data point.
+
+**Landmark moment explorer** — pick any match from the dropdown to isolate its late-game shots
+on the scatter. Useful for reconstructing the pressure narrative of a specific game: which shots
+were high-xG but missed, which were low-xG goals against the model's expectation.
+""")
+
+with st.expander("👤 Player Profile"):
+    st.markdown("""
+**Search by player name** using the text input — partial matches work (e.g. "Messi" finds
+"Lionel Messi"). Only players with at least one penalty in the dataset appear; 159 players
+are profiled across the three tournaments.
+
+**Pressure breakdown chart** — a stacked bar showing each player's kicks split by context:
+in-game vs shootout, and (where applicable) which shootout round. This lets you see at a glance
+whether a player's record is built on easier in-game kicks or under genuine shootout pressure.
+
+**Head-to-head comparison** — select two players from the dropdowns to place their full
+pressure profiles side by side. The comparison is descriptive (real observed rates), not a
+model prediction of who would win a hypothetical shootout. Small sample sizes are flagged
+explicitly — a player with 2 penalties has a wide confidence interval no matter what the rate
+shows.
+""")
+
+with st.expander("🟨 Officiating Lens"):
+    st.markdown("""
+**Five real scenarios** drawn from major tournament incidents, each one a case where the
+officiating decision was either overturned by VAR, disputed at the time, or cited in
+post-match analysis as a fine-margin call.
+
+**The Law box** — each scenario shows the relevant IFAB Laws of the Game extract (Laws 9, 11,
+12, or 14, parsed from the official 2025/26 PDF using IBM Docling). This is the actual rulebook
+language the referee and VAR officials are applying, paraphrased to avoid verbatim reproduction.
+It's there so you can read the rule alongside the incident, not just take the app's framing for it.
+
+**"What this system cannot know"** — this section is intentional and important. VAR decisions
+involve camera angles, real-time communication between officials, and judgment calls that no
+data model can reconstruct. This box lists the specific unknowns for each scenario: what the
+pitchside monitor showed, what the VAR official's exact frame was, whether the referee's
+viewing angle matched the broadcast angle. The app shows you the data context; it explicitly
+does not claim to adjudicate the call.
+""")
+
+with st.expander("💬 Granite Chat"):
+    st.markdown("""
+**Three modes**, selectable before you send a message:
+
+- *Fan* — conversational, context-first. Granite explains pressure moments in terms of what
+  they felt like and what the stakes were, drawing on the match data rather than generic
+  football knowledge.
+- *Analyst* — data-forward. Responses lead with the numbers (conversion rates, xG residuals,
+  SHAP feature contributions) and interpret them. Best mode if you want to understand the
+  methodology or interrogate a specific finding.
+- *Referee trainee* — law-grounded. Responses anchor to the relevant IFAB Law text from
+  `law_chunks.json` before interpreting the officiating angle. Useful for the Officiating
+  Lens scenarios.
+
+**"Grounded data" means** Granite is calling real tool functions (`get_pressure_profile`,
+`get_law_text`, `get_overturn_rate`) that read from the actual processed parquet files and
+law chunks — it is not generating statistics from its training data. When you see a number
+in a Granite response, it came from the same dataset that powers the charts on the other pages.
+
+**Live vs demo mode** — if `WATSONX_API_KEY` is not set in the environment, the page falls
+back to demo mode, which shows pre-written example responses to illustrate the interface.
+Live mode shows a 🟢 indicator in the sidebar; demo mode shows 🟡. The data tools run in
+both modes; only the Granite narration layer differs.
+""")
