@@ -148,7 +148,7 @@ with right:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("### 📋 Data provenance")
     st.caption(
-        "All shot events from StatsBomb's open-data repository (Apache 2.0 licence). "
+        "All shot events from StatsBomb's open-data repository (StatsBomb Public Data User Agreement)."
         "2022 FIFA World Cup (competition 43, season 106), "
         "2018 FIFA World Cup (competition 43, season 3), "
         "FIFA Women's World Cup 2023 (competition 72, season 107). "
