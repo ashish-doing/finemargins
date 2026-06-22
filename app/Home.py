@@ -61,13 +61,75 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Hero ─────────────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="hero">
-  <h1>⚽ FineMargins</h1>
-  <p>World Cup pressure intelligence — what really happens when it matters most,<br>
-  explained with real data from 192 matches across three major tournaments.</p>
+import streamlit.components.v1 as components
+
+components.html("""
+<style>
+.fm{position:relative;width:100%;height:320px;overflow:hidden;background:#0a0a0a;border-radius:10px;font-family:sans-serif;box-sizing:border-box}
+.pb{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 59px,rgba(255,255,255,.03) 59px,rgba(255,255,255,.03) 60px),repeating-linear-gradient(0deg,transparent 0px,transparent 79px,rgba(255,255,255,.03) 79px,rgba(255,255,255,.03) 80px),linear-gradient(160deg,#0e1f0e 0%,#0a150a 40%,#050d05 100%)}
+.pl{position:absolute;inset:0}.pl svg{width:100%;height:100%;opacity:.13}
+.co{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;padding:0 24px;text-align:center;margin-top:-30px}
+.su{margin-top:28px!important}
+.ti{font-size:48px;font-weight:700;letter-spacing:-1px;color:#fff;margin:0 0 4px;line-height:1}
+.ti span{color:#0f62fe}
+.su{font-size:15px;color:rgba(255,255,255,.55);margin:10px 0 0;max-width:420px;line-height:1.5}
+.ba{display:inline-block;margin-bottom:14px;padding:4px 12px;border:1px solid rgba(15,98,254,.45);border-radius:20px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(15,98,254,.9);background:rgba(15,98,254,.08)}
+.bl{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#ccc 60%,#999 100%);box-shadow:0 0 6px rgba(15,98,254,.6);z-index:5;animation:bm 6s cubic-bezier(.4,0,.6,1) infinite;top:54%}
+@keyframes bm{0%{left:-30px;top:72%;opacity:0}5%{opacity:1}30%{left:38%;top:66%}55%{left:62%;top:62%}85%{left:100%;top:58%;opacity:1}86%{opacity:0}100%{left:100%;top:58%;opacity:0}}
+.pa{position:absolute;z-index:4;opacity:.45}
+.pl2{left:26%;top:55%;animation:pla 6s ease-in-out infinite}
+.pr{left:66%;top:48%;animation:plb 6s ease-in-out infinite}
+@keyframes pla{0%,100%{transform:translateX(0)}30%{transform:translateX(12px)}60%{transform:translateX(-4px)}}
+@keyframes plb{0%,100%{transform:translateX(0) scaleX(-1)}30%{transform:translateX(-8px) scaleX(-1)}60%{transform:translateX(6px) scaleX(-1)}}
+.sc{position:absolute;top:0;left:-100%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(15,98,254,.04),transparent);animation:sc 8s linear infinite;z-index:2}
+@keyframes sc{0%{left:-40%}100%{left:140%}}
+.cd{position:absolute;width:5px;height:5px;border-radius:50%;background:#0f62fe;opacity:.5}
+</style>
+<div class="fm">
+  <div class="pb"></div>
+  <div class="pl">
+    <svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <rect x="60" y="30" width="680" height="260" fill="none" stroke="white" stroke-width="1.5"/>
+      <line x1="400" y1="30" x2="400" y2="290" stroke="white" stroke-width="1.5"/>
+      <circle cx="400" cy="160" r="60" fill="none" stroke="white" stroke-width="1.5"/>
+      <circle cx="400" cy="160" r="3" fill="white"/>
+      <rect x="60" y="100" width="90" height="120" fill="none" stroke="white" stroke-width="1.5"/>
+      <rect x="650" y="100" width="90" height="120" fill="none" stroke="white" stroke-width="1.5"/>
+      <rect x="60" y="115" width="30" height="90" fill="none" stroke="white" stroke-width="2"/>
+      <rect x="710" y="115" width="30" height="90" fill="none" stroke="white" stroke-width="2"/>
+      <path d="M150 100 A40 40 0 0 1 150 220" fill="none" stroke="white" stroke-width="1.5"/>
+      <path d="M650 100 A40 40 0 0 0 650 220" fill="none" stroke="white" stroke-width="1.5"/>
+      <circle cx="200" cy="160" r="2" fill="white"/>
+      <circle cx="600" cy="160" r="2" fill="white"/>
+    </svg>
+  </div>
+  <div class="sc"></div>
+  <div class="pa pl2">
+    <svg width="22" height="42" viewBox="0 0 22 42" xmlns="http://www.w3.org/2000/svg" fill="rgba(255,255,255,0.8)">
+      <circle cx="11" cy="6" r="5"/>
+      <path d="M5 13C5 11 8 10 11 10C14 10 17 11 17 13L18 26H14L13 20L11 22L9 20L8 26H4Z"/>
+      <path d="M8 26L6 38H9L11 30L13 38H16L14 26Z"/>
+    </svg>
+  </div>
+  <div class="pa pr">
+    <svg width="22" height="42" viewBox="0 0 22 42" xmlns="http://www.w3.org/2000/svg" fill="rgba(255,255,255,0.65)">
+      <circle cx="11" cy="6" r="5"/>
+      <path d="M5 13C5 11 8 10 11 10C14 10 17 11 17 13L18 26H14L13 20L11 22L9 20L8 26H4Z"/>
+      <path d="M8 26L6 38H9L11 30L13 38H16L14 26Z"/>
+    </svg>
+  </div>
+  <div class="bl"></div>
+  <div class="co">
+    <div class="ba">World Cup · Pressure Intelligence</div>
+    <div class="ti">Fine<span>Margins</span></div>
+    <div class="su">Quantifying the pressure that decides knockout football — powered by StatsBomb open data and IBM Granite.</div>
+  </div>
+  <div class="cd" style="top:18px;left:18px"></div>
+  <div class="cd" style="top:18px;right:18px"></div>
+  <div class="cd" style="bottom:18px;left:18px"></div>
+  <div class="cd" style="bottom:18px;right:18px"></div>
 </div>
-""", unsafe_allow_html=True)
+""", height=330)
 
 # ── Live KPIs ─────────────────────────────────────────────────────────────────
 pen = load_penalties()
