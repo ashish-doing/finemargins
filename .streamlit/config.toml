@@ -11,7 +11,7 @@ font            = "sans serif"
 # headless = true is required for cloud deployment
 headless        = true
 enableCORS      = false
-enableXsrfProtection = true
+enableXsrfProtection = false
 
 [browser]
 # Prevents Streamlit from trying to open a browser tab on Railway
