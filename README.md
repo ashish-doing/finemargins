@@ -47,7 +47,7 @@ IBM Granite (via watsonx.ai) narrates both lenses in three modes: fan, analyst, 
 
 ## Data
 
-All data from **StatsBomb Open Data** (Apache 2.0 licence, [github.com/statsbomb/open-data](https://github.com/statsbomb/open-data)):
+All data from **StatsBomb Open Data**, used under StatsBomb's Public Data User Agreement (free for research and analysis, attribution required — [github.com/statsbomb/open-data](https://github.com/statsbomb/open-data)):
 
 | Tournament | Competition ID | Season ID | Matches |
 |---|---|---|---|
@@ -167,4 +167,4 @@ This project was developed with assistance from IBM Bob (IBM's AI coding assista
 ---
 
 *Built for the IBM SkillsBuild AI Builders Challenge, June 2026 — "AI Inside the Match"*
-*Data: StatsBomb Open Data (Apache 2.0). Laws: IFAB Laws of the Game 2025/26.*
+*Data: StatsBomb Open Data (StatsBomb Public Data User Agreement). Laws: IFAB Laws of the Game 2025/26.*

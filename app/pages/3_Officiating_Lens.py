@@ -100,7 +100,7 @@ with lc:
     if scenario.get('historical_overturn_rate') is not None:
         rate = scenario['historical_overturn_rate']
         st.metric(
-            f"Historical overturn rate — {scenario['category'].replace('_',' ')} reviews",
+            f"Historical overturn rate — Qatar 2022 (all VAR categories)",
             f"{rate:.0%}",
             help=scenario.get('overturn_rate_source', '')
         )
