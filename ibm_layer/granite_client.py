@@ -20,6 +20,9 @@ import os
 from ibm_watsonx_ai import Credentials
 from ibm_watsonx_ai.foundation_models import ModelInference
 
+from dotenv import load_dotenv
+load_dotenv()
+
 SYSTEM_PROMPTS = {
     "fan": (
         "You are explaining football moments to a casual fan watching the "
