@@ -1,3 +1,13 @@
+---
+title: FineMargins
+emoji: ⚽
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_file: app/Home.py
+pinned: false
+---
+
 # ⚽ FineMargins — World Cup Pressure Intelligence
 
 > "Football is decided by fine margins — millimeters on the pitch and split seconds of composure under pressure."
