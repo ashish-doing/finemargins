@@ -52,7 +52,7 @@ def get_client() -> ModelInference:
         model_id=os.environ.get("WATSONX_MODEL_ID", "ibm/granite-4-h-small"),
         credentials=creds,
         project_id=os.environ["WATSONX_PROJECT_ID"],
-        params={"max_new_tokens": 400, "temperature": 0.3},
+        params={"max_tokens": 400, "temperature": 0.3},
     )
 
 
