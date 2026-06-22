@@ -122,7 +122,7 @@ components.html("""
   <div class="co">
     <div class="ba">World Cup · Pressure Intelligence</div>
     <div class="ti">Fine<span>Margins</span></div>
-    <div class="su">Quantifying the pressure that decides knockout football — powered by StatsBomb open data and IBM Granite.</div>
+    <div class="su" style="margin-top:36px;font-size:13px;white-space:nowrap;letter-spacing:0.02em;opacity:0.5">Quantifying the pressure that decides knockout football — powered by StatsBomb open data and IBM Granite.</div>
   </div>
   <div class="cd" style="top:18px;left:18px"></div>
   <div class="cd" style="top:18px;right:18px"></div>
