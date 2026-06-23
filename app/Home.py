@@ -208,6 +208,7 @@ with right:
     st.page_link("pages/2_Player_Profile.py", label="👤 Player Profiles — 159 players profiled", icon="👤")
     st.page_link("pages/3_Officiating_Lens.py", label="🟨 Officiating Lens — VAR & Laws explained", icon="🟨")
     st.page_link("pages/4_Granite_Chat.py", label="💬 Ask Granite — IBM AI narration", icon="💬")
+    st.page_link("pages/5_Tournament_Intel.py", label="📊 Tournament Intel — analyst dashboard", icon="📊")
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("### 🛠️ Powered by")
@@ -312,4 +313,24 @@ in a Granite response, it came from the same dataset that powers the charts on t
 back to demo mode, which shows pre-written example responses to illustrate the interface.
 Live mode shows a 🟢 indicator in the sidebar; demo mode shows 🟡. The data tools run in
 both modes; only the Granite narration layer differs.
+""")
+
+with st.expander("📊 Tournament Intelligence"):
+    st.markdown("""
+**CRM-style analyst dashboard** summarising all 192 matches across the three tournaments in one view.
+
+**Tournament comparison** — side-by-side breakdown of 2018 WC, 2022 WC, and Women's WC 2023: 
+penalty conversion, shootout vs in-game gap, and mean xG residual per shot. Tells you which 
+tournament produced the most pressure-sensitive finishing.
+
+**Player leaderboard** — all 159 players ranked by any metric you choose (conversion rate, 
+total penalties, shootout kicks). Filter by minimum kicks taken to remove small-sample noise. 
+The Gap column shows each player's in-game vs shootout differential directly.
+
+**Pressure heatmap** — a stage × period grid showing mean xG residual per cell. 
+Red = players underperformed their xG (pressure suppressed finishing). Blue = overperformed.
+Lets you see at a glance which combinations of stage and match period produce the most pressure effect.
+
+**Key facts table** — every verified number from the full dataset in one scannable reference, 
+with source attribution for each figure.
 """)
