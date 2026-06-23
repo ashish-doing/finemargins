@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FineMargins — World Cup Pressure Intelligence</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#0f62fe;--blue-dim:#0f62fe22;--blue-border:#0f62fe44;
+  --green:#42be65;--red:#fa4d56;--orange:#ff832b;
+  --bg:#0a0a0a;--surface:#111;--surface2:#1c1c1c;
+  --border:#222;--text:#f4f4f4;--muted:#888;--dim:#444;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace,sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{color:var(--text);font-weight:700;font-size:1.1rem;text-decoration:none}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--blue);color:#fff;padding:6px 16px;border-radius:4px;text-decoration:none;font-size:.85rem;font-weight:600;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-pitch{position:absolute;inset:0;opacity:.06;pointer-events:none}
+.hero-pitch svg{width:100%;height:100%;object-fit:cover}
+.hero-scan{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(15,98,254,.04),transparent);animation:scan 8s linear infinite}
+@keyframes scan{0%{left:-60%}100%{left:140%}}
+.hero-tag{display:inline-block;border:1px solid var(--blue-border);background:var(--blue-dim);color:var(--blue);border-radius:20px;padding:4px 14px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.5rem,8vw,5.5rem);font-weight:700;letter-spacing:-2px;line-height:1;margin-bottom:1.2rem}
+.hero h1 span{color:var(--blue)}
+.hero-quote{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+.hero-quote em{color:var(--text);font-style:normal}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--blue);color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.9rem;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-outline{border:1px solid var(--blue-border);color:var(--blue);padding:11px 28px;border-radius:4px;text-decoration:none;font-size:.9rem;transition:all .2s}
+.btn-outline:hover{background:var(--blue-dim)}
+.hero-scroll{margin-top:4rem;color:var(--dim);font-size:.8rem;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* STATS STRIP */
+.stats-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2rem;display:grid;grid-template-columns:repeat(6,1fr);gap:1px}
+.stat-item{text-align:center;padding:1rem}
+.stat-item .val{font-size:2rem;font-weight:700;color:var(--blue);display:block}
+.stat-item .lbl{font-size:.75rem;color:var(--muted);margin-top:4px;display:block}
+.stat-item .sub{font-size:.7rem;color:var(--dim);display:block}
+
+/* SECTIONS */
+section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
+.section-tag{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:.8rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.7;max-width:600px;margin-bottom:3rem}
+
+/* WHAT IT IS */
+.lenses{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.lens-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:2rem;position:relative;overflow:hidden;transition:border-color .2s}
+.lens-card:hover{border-color:var(--blue-border)}
+.lens-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue)}
+.lens-card.orange::before{background:var(--orange)}
+.lens-icon{font-size:2rem;margin-bottom:1rem}
+.lens-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.6rem}
+.lens-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
+.lens-stats{margin-top:1.2rem;display:flex;gap:1rem}
+.lens-stat{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:6px 12px;font-size:.8rem}
+.lens-stat span{color:var(--blue);font-weight:700}
+
+/* FINDINGS */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.finding{background:var(--surface);border-left:3px solid var(--blue);border-radius:0 6px 6px 0;padding:1.2rem 1.4rem}
+.finding.green{border-left-color:var(--green)}
+.finding.red{border-left-color:var(--red)}
+.finding.orange{border-left-color:var(--orange)}
+.finding-val{font-size:1.8rem;font-weight:700;color:var(--blue);display:block;margin-bottom:.3rem}
+.finding.green .finding-val{color:var(--green)}
+.finding.red .finding-val{color:var(--red)}
+.finding.orange .finding-val{color:var(--orange)}
+.finding p{color:var(--muted);font-size:.85rem;line-height:1.6}
+
+/* ARCHITECTURE */
+.arch{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.arch-header{background:#0f2040;padding:1rem 1.5rem;display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted)}
+.arch-dot{width:10px;height:10px;border-radius:50%}
+.arch-body{padding:2rem;font-size:.85rem;line-height:2;color:var(--muted)}
+.arch-step{display:flex;align-items:flex-start;gap:1.5rem;padding:.8rem 0;border-bottom:1px solid var(--border)}
+.arch-step:last-child{border-bottom:none}
+.arch-num{color:var(--blue);font-weight:700;font-size:1.1rem;min-width:32px}
+.arch-text h4{color:var(--text);font-size:.9rem;margin-bottom:.2rem}
+.arch-text p{color:var(--muted);font-size:.82rem}
+.arch-tag{display:inline-block;background:var(--blue-dim);border:1px solid var(--blue-border);color:var(--blue);border-radius:3px;padding:1px 7px;font-size:.72rem;margin-top:.3rem;margin-right:4px}
+
+/* IBM STACK */
+.ibm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.ibm-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-align:center;transition:border-color .2s}
+.ibm-card:hover{border-color:var(--blue-border)}
+.ibm-icon{font-size:2rem;margin-bottom:.8rem}
+.ibm-card h4{font-size:.9rem;font-weight:700;margin-bottom:.4rem;color:var(--text)}
+.ibm-card p{font-size:.78rem;color:var(--muted);line-height:1.5}
+.ibm-card .version{display:inline-block;background:var(--blue-dim);border:1px solid var(--blue-border);color:var(--blue);border-radius:3px;padding:2px 8px;font-size:.7rem;margin-top:.6rem}
+
+/* CTA */
+.cta-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4rem 3rem;text-align:center;margin:0 2rem 4rem;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(15,98,254,.1),transparent 70%)}
+.cta-section h2{font-size:2.5rem;font-weight:700;letter-spacing:-1px;margin-bottom:.8rem}
+.cta-section p{color:var(--muted);margin-bottom:2rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--dim);font-size:.8rem}
+footer a{color:var(--muted);text-decoration:none;margin:0 .75rem}
+footer a:hover{color:var(--text)}
+
+/* LOADING OVERLAY */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
+#loader.hidden{opacity:0;pointer-events:none}
+.loader-ball{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#ccc 60%,#888);animation:spin 1s linear infinite,float 2s ease-in-out infinite;margin-bottom:2rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:rotate(0deg) translateY(0)}50%{transform:rotate(180deg) translateY(-10px)}}
+.loader-text{color:var(--muted);font-size:.85rem;letter-spacing:.1em}
+.loader-bar{width:200px;height:2px;background:var(--surface2);border-radius:1px;margin-top:1rem;overflow:hidden}
+.loader-fill{height:100%;background:var(--blue);animation:load 1.2s ease-out forwards}
+@keyframes load{0%{width:0%}100%{width:100%}}
+
+@media(max-width:768px){
+  .stats-strip{grid-template-columns:repeat(3,1fr)}
+  .lenses,.findings,.ibm-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-ball"></div>
+  <div class="loader-text">// loading pressure data</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Fine<span>Margins</span></a>
+  <ul class="nav-links">
+    <li><a href="#what">What it is</a></li>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#ibm">IBM Stack</a></li>
+    <li><a href="https://github.com/ashish-doing/finemargins">GitHub →</a></li>
+  </ul>
+  <a href="https://huggingface.co/spaces/ashish-doing/finemargins" class="nav-cta">🚀 Live App</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pitch">
+    <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+      <rect x="100" y="50" width="1000" height="500" fill="none" stroke="white" stroke-width="2"/>
+      <line x1="600" y1="50" x2="600" y2="550" stroke="white" stroke-width="2"/>
+      <circle cx="600" cy="300" r="100" fill="none" stroke="white" stroke-width="2"/>
+      <circle cx="600" cy="300" r="4" fill="white"/>
+      <rect x="100" y="180" width="130" height="240" fill="none" stroke="white" stroke-width="2"/>
+      <rect x="970" y="180" width="130" height="240" fill="none" stroke="white" stroke-width="2"/>
+      <rect x="100" y="220" width="55" height="160" fill="none" stroke="white" stroke-width="2"/>
+      <rect x="1045" y="220" width="55" height="160" fill="none" stroke="white" stroke-width="2"/>
+      <circle cx="280" cy="300" r="3" fill="white"/>
+      <circle cx="920" cy="300" r="3" fill="white"/>
+      <path d="M230 180 A80 80 0 0 1 230 420" fill="none" stroke="white" stroke-width="2"/>
+      <path d="M970 180 A80 80 0 0 0 970 420" fill="none" stroke="white" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="hero-scan"></div>
+  <div class="hero-tag">IBM SkillsBuild AI Builders Challenge · June 2026</div>
+  <h1>Fine<span>Margins</span></h1>
+  <p class="hero-quote">"Football is decided by fine margins — <em>millimeters on the pitch</em> and <em>split seconds of composure</em> under pressure."</p>
+  <div class="hero-btns">
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins" class="btn-primary">🚀 Open Live App</a>
+    <a href="https://github.com/ashish-doing/finemargins" class="btn-outline">⭐ GitHub</a>
+  </div>
+  <div class="hero-scroll">↓ scroll to explore</div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <span class="val">192</span>
+    <span class="lbl">Matches Analysed</span>
+    <span class="sub">2018 · 2022 · WWC 2023</span>
+  </div>
+  <div class="stat-item">
+    <span class="val">202</span>
+    <span class="lbl">Penalty Kicks</span>
+    <span class="sub">In-game + Shootout</span>
+  </div>
+  <div class="stat-item">
+    <span class="val">1,228</span>
+    <span class="lbl">Late-Game Shots</span>
+    <span class="sub">75′ – 120′ + extra time</span>
+  </div>
+  <div class="stat-item">
+    <span class="val">159</span>
+    <span class="lbl">Player Profiles</span>
+    <span class="sub">Real WC penalty takers</span>
+  </div>
+  <div class="stat-item">
+    <span class="val">0.773</span>
+    <span class="lbl">Model AUC</span>
+    <span class="sub">Late-shot pressure model</span>
+  </div>
+  <div class="stat-item">
+    <span class="val">4</span>
+    <span class="lbl">IBM Technologies</span>
+    <span class="sub">Granite · Docling · MCP · Bob</span>
+  </div>
+</div>
+
+<!-- WHAT IT IS -->
+<section id="what">
+  <div class="section-tag">// What it is</div>
+  <h2 class="section-title">TWO LENSES.<br>ONE TRUTH.</h2>
+  <p class="section-sub">FineMargins is a World Cup pressure intelligence system with two analytical lenses — both grounded in real StatsBomb open data, explained by IBM Granite, and honest about what they cannot know.</p>
+
+  <div class="lenses">
+    <div class="lens-card">
+      <div class="lens-icon">⚡</div>
+      <h3>Pressure Lens</h3>
+      <p>Analyses every penalty kick and late-game shot across 192 real World Cup matches to quantify how pressure context shifts conversion probability — and then is honest about what it can and cannot predict.</p>
+      <div class="lens-stats">
+        <div class="lens-stat">Shootout: <span>65.0%</span></div>
+        <div class="lens-stat">In-game: <span>74.7%</span></div>
+        <div class="lens-stat">Gap: <span>−9.7pp</span></div>
+      </div>
+    </div>
+    <div class="lens-card orange">
+      <div class="lens-icon">🟨</div>
+      <h3>Officiating Lens</h3>
+      <p>Explains 5 real, documented VAR incidents from World Cup history using actual IFAB Laws parsed by IBM Docling, real historical base rates, and an explicit "what this system cannot know" panel per incident.</p>
+      <div class="lens-stats">
+        <div class="lens-stat">VAR reviews: <span>27</span></div>
+        <div class="lens-stat">Overturned: <span>92.6%</span></div>
+        <div class="lens-stat">Laws: <span>9·11·12·14</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="findings" style="background:var(--surface);max-width:100%;padding:5rem 2rem">
+<div style="max-width:1200px;margin:0 auto">
+  <div class="section-tag">// Real findings · Not fabricated</div>
+  <h2 class="section-title">NUMBERS THAT<br>HOLD UP.</h2>
+  <p class="section-sub">Every number below comes from real StatsBomb open data — 192 matches, 4,878 shot events. Verified by 5-fold cross-validation with honest reporting of model limits.</p>
+
+  <div class="findings">
+    <div class="finding">
+      <span class="finding-val">−9.7pp</span>
+      <p>Shootout vs in-game penalty gap — 65.0% (n=123) vs 74.7% (n=79). Real, measurable, persists across all 3 tournaments. 95% CIs overlap slightly at this sample size.</p>
+    </div>
+    <div class="finding green">
+      <span class="finding-val" style="color:var(--green)">71.4%</span>
+      <p>Sudden-death kick conversion from 14 real kicks — counter-intuitively higher than regular shootout kicks (65.0%). Small sample, but real and unreported elsewhere.</p>
+    </div>
+    <div class="finding orange">
+      <span class="finding-val" style="color:var(--orange)">110.87 → 103</span>
+      <p>StatsBomb's xG model expected 110.87 late-game goals — 103 were actually scored. Pressure suppresses finishing by ~7 goals beyond what shot quality alone predicts.</p>
+    </div>
+    <div class="finding red">
+      <span class="finding-val" style="color:var(--red)">AUC 0.518</span>
+      <p>Pressure context predicts individual penalty outcomes barely above chance. Honest finding, not a failure — pressure shifts populations, not individuals. Consistent with sports science.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-tag">// Architecture</div>
+  <h2 class="section-title">FIVE STEPS FROM<br>DATA TO INSIGHT</h2>
+  <p class="section-sub">From StatsBomb's open JSON to IBM Granite narration — a clean, verifiable pipeline where every number traces back to a real source.</p>
+
+  <div class="arch">
+    <div class="arch-header">
+      <div class="arch-dot" style="background:#fa4d56"></div>
+      <div class="arch-dot" style="background:#ff832b;margin-left:6px"></div>
+      <div class="arch-dot" style="background:#42be65;margin-left:6px"></div>
+      <span style="margin-left:1rem">finemargins / pipeline</span>
+    </div>
+    <div class="arch-body">
+      <div class="arch-step">
+        <div class="arch-num">01</div>
+        <div class="arch-text">
+          <h4>StatsBomb Open Data Fetch</h4>
+          <p>192 matches pulled concurrently from StatsBomb's public GitHub repo — 2018 WC, 2022 WC, Women's WC 2023. No scraping, no paid API. Licensed under StatsBomb Public Data User Agreement.</p>
+          <span class="arch-tag">StatsBomb JSON</span>
+          <span class="arch-tag">urllib.request</span>
+          <span class="arch-tag">ThreadPoolExecutor</span>
+        </div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-num">02</div>
+        <div class="arch-text">
+          <h4>Pressure Feature Engineering</h4>
+          <p>202 penalty kicks and 1,228 late-game shots extracted. Pressure index built: shootout flag, sudden-death flag, knockout stage, stage weight, minutes remaining, xG residual.</p>
+          <span class="arch-tag">pandas</span>
+          <span class="arch-tag">numpy</span>
+          <span class="arch-tag">parquet</span>
+        </div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-num">03</div>
+        <div class="arch-text">
+          <h4>Model Training + SHAP</h4>
+          <p>Model A: Logistic Regression on 202 penalties (AUC 0.518 — honestly reported). Model B: Logistic Regression + xG baseline on 1,228 shots (AUC 0.773). SHAP LinearExplainer for per-kick attribution. 5-fold CV throughout.</p>
+          <span class="arch-tag">scikit-learn</span>
+          <span class="arch-tag">shap</span>
+          <span class="arch-tag">5-fold CV</span>
+        </div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-num">04</div>
+        <div class="arch-text">
+          <h4>IBM Tool Layer</h4>
+          <p>IBM Docling parses the IFAB Laws of the Game 2025/26 PDF into structured chunks. IBM Context Forge MCP wires three typed tools (get_pressure_profile, get_law_text, get_overturn_rate) so Granite calls real data rather than generating statistics.</p>
+          <span class="arch-tag">IBM Docling 2.103</span>
+          <span class="arch-tag">IBM Context Forge MCP 1.0.3</span>
+          <span class="arch-tag">FastMCP</span>
+        </div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-num">05</div>
+        <div class="arch-text">
+          <h4>IBM Granite Narration</h4>
+          <p>IBM Granite (ibm/granite-4-h-small via watsonx.ai) narrates findings in three voice modes: fan, analyst, referee trainee. System prompts restrict Granite to numbers from tool calls only — no hallucination possible.</p>
+          <span class="arch-tag">IBM Granite (watsonx.ai)</span>
+          <span class="arch-tag">ibm-watsonx-ai SDK</span>
+          <span class="arch-tag">Streamlit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IBM STACK -->
+<section id="ibm" style="background:var(--surface);max-width:100%;padding:5rem 2rem">
+<div style="max-width:1200px;margin:0 auto">
+  <div class="section-tag">// IBM Technology Stack</div>
+  <h2 class="section-title">FOUR IBM TOOLS.<br>ALL SUBSTANTIVE.</h2>
+  <p class="section-sub">Every IBM technology listed here contributes something you can verify by running the app — not decorative badge-collection.</p>
+
+  <div class="ibm-grid">
+    <div class="ibm-card">
+      <div class="ibm-icon">🧠</div>
+      <h4>IBM Granite</h4>
+      <p>ibm/granite-4-h-small via watsonx.ai narrates real pressure data in three voice modes. Confirmed live with 🟢 indicator in the deployed app.</p>
+      <span class="version">watsonx.ai Lite</span>
+    </div>
+    <div class="ibm-card">
+      <div class="ibm-icon">📄</div>
+      <h4>IBM Docling</h4>
+      <p>Parses the IFAB Laws of the Game 2025/26 PDF into structured text. Laws 9, 11, 12, and 14 are chunked and served to Granite via tool calls.</p>
+      <span class="version">docling 2.103.0</span>
+    </div>
+    <div class="ibm-card">
+      <div class="ibm-icon">🔗</div>
+      <h4>IBM Context Forge MCP</h4>
+      <p>MCP gateway wrapping three typed data tools. Granite never generates a statistic freely — every number comes from a real tool call to the processed dataset.</p>
+      <span class="version">mcpgateway 1.0.3</span>
+    </div>
+    <div class="ibm-card">
+      <div class="ibm-icon">🤖</div>
+      <h4>IBM Bob</h4>
+      <p>Development assistant used throughout the build. Specifically: completed the Law 14 penalty kick summary by reading the actual project files and paraphrasing the source.</p>
+      <span class="version">Bob Shell 1.0.4</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-tag">// Try it now</div>
+  <h2>THE 2026 WORLD CUP<br>IS LIVE RIGHT NOW.</h2>
+  <p>Group stage running through June 27. Use FineMargins to benchmark today's moments against real historical patterns.</p>
+  <div class="cta-btns">
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins" class="btn-primary">🚀 Open Live App</a>
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins#pressure-lens" class="btn-outline">⚡ Pressure Lens</a>
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins#officiating" class="btn-outline">🟨 Officiating Lens</a>
+    <a href="https://github.com/ashish-doing/finemargins" class="btn-outline">⭐ GitHub</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:.5rem">FineMargins · IBM SkillsBuild AI Builders Challenge · June 2026 · MIT License</p>
+  <div>
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App</a>
+    <a href="https://github.com/ashish-doing/finemargins">GitHub</a>
+    <a href="https://github.com/statsbomb/open-data">StatsBomb Data</a>
+    <a href="https://ibm.github.io/mcp-context-forge/">Context Forge</a>
+  </div>
+</footer>
+
+<script>
+// Loading screen
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1400);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.lens-card,.finding,.ibm-card,.arch-step').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
