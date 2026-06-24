@@ -103,12 +103,36 @@
       "excerpt": "TODO — exact IFAB 2025/26 wording pending Docling extraction. As with other SAOT decisions, the determining question is whether any non-arm body part is fractionally ahead of the second-last defender at the moment of the pass.",
       "source_page": 51
     },
+
     "historical_overturn_rate": 0.926,
     "overturn_rate_source": "Tournament-wide VAR overturn rate: 25 of 27 total VAR review interventions at Qatar 2022 changed the on-field decision (≈92.6%). Source: ESPN full VAR review log (espn.com, Dec 2022); TNT Sports SAOT explainer (20 Nov 2022).",
     "what_the_model_does_not_know": [
       "The SAOT positional data underlying this specific call",
       "Sub-frame limb-position measurements — StatsBomb event data records only the outcome, not the measurement",
       "How SAOT's precision threshold changes disallowance frequency relative to pre-SAOT tournaments"
+    ]
+  },
+  {
+    "scenario_id": "QAT_SUI_2026_FREULER_PENALTY_SAOT_OUTAGE",
+    "title": "Qatar vs Switzerland — Penalty Awarded Despite Apparent Offside, SAOT Outage",
+    "tournament": "FIFA World Cup 2026",
+    "match": "Qatar vs Switzerland — Group A, San Francisco Bay Area, 14 Jun 2026",
+    "minute": 14,
+    "category": "penalty",
+    "description": "Switzerland were awarded a penalty in the 14th minute after Remo Freuler was brought down by Qatar goalkeeper Mahmoud Abunada. Broadcast replays appeared to show Freuler in an offside position before receiving the ball, but VAR did not overturn the decision — and crucially, no replay evidence was shown to fans in the stadium or on broadcast. Hours after the match, FIFA cited a 'brief technical outage' that prevented the SAOT onside animation graphic from being generated. Breel Embolo converted the penalty. The incident re-ignited the 2022 debate about whether VAR decisions require visible, real-time evidence to maintain public trust — and whether SAOT's absence changes the standard of proof applied.",
+    "relevant_law": {
+      "law_number": 11,
+      "law_title": "Offside",
+      "excerpt": "A player in an offside position only commits an offence if they become actively involved in play. Whether an offside flag should be raised depends on whether any part of the head, body, or feet (not arms) is nearer the opponents' goal line than both the ball and the second-last defender at the moment the ball is played. SAOT uses 29 skeletal data points per player to make this determination; when the system is unavailable, a manual VAR check applies a higher threshold of 'clear and obvious' rather than millimetre precision.",
+      "source_page": 51
+    },
+    "historical_overturn_rate": 0.926,
+    "overturn_rate_source": "Qatar 2022 tournament-wide VAR overturn rate: 25 of 27 reviews changed the on-field decision (92.6%). Source: ESPN full VAR review log (espn.com, Dec 2022). Note: the 2026 WC is introducing updated SAOT protocols; outage incidents represent a new category not present in 2022 data.",
+    "what_the_model_does_not_know": [
+      "The precise skeletal tracking data that would have been generated had SAOT been functioning — the key measurement that determined whether Freuler was onside",
+      "Whether the manual VAR check applied the same millimetre-precision standard SAOT would have, or a higher 'clear and obvious' threshold",
+      "The internal FIFA technical report on the outage duration and its effect on the decision workflow",
+      "Whether broadcast angles shown to fans matched the angle actually used by the VAR officials during review"
     ]
   }
 ]

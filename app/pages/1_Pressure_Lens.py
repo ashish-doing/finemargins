@@ -42,6 +42,25 @@ tab1, tab2 = st.tabs(["🥅 Penalty Pressure", "⏱️ Late-Game & Extra Time"])
 # TAB 1 — PENALTY PRESSURE
 # ═══════════════════════════════════════════════════════════════════════
 with tab1:
+    with st.expander("🔬 Methodology — why residual analysis, not raw prediction"):
+        st.markdown("""
+**The problem with predicting penalties directly:** Training a model to predict "will this penalty go in?" 
+on n=202 kicks produces AUC 0.518 — barely above chance. That's the honest finding, not a failure. 
+Pressure context shifts *populations*, not individuals.
+ 
+**What Model B does instead:** Rather than predicting outcomes, it models the *residual* — how much 
+the actual outcome differs from StatsBomb's baseline xG for each shot. This isolates the pressure 
+effect on top of shot quality, holding difficulty constant. Same logic as comparing a model against 
+itself under different conditions rather than against raw reality.
+ 
+**Why this is methodologically stronger:** A raw prediction model conflates shot difficulty with 
+pressure context. The residual approach asks: does pressure explain variance *above and beyond* 
+shot quality? Answer: Model B AUC 0.773 vs xG-alone baseline 0.807 — shot quality dominates, 
+but pressure suppresses finishing volume and quality in knockout rounds (−0.71% residual vs −0.61% 
+in group stage). The honest finding is that pressure is real at population level but undetectable 
+at the individual level.
+        """)
+ 
     c1, c2, c3 = st.columns(3)
     with c1:
         total_pen = len(pen)
@@ -120,6 +139,17 @@ with tab1:
         </div>""", unsafe_allow_html=True)
 
     # ── Chart 2: Stage breakdown ──────────────────────────────────────────
+    st.markdown(f"""
+    <div class="finding-box" style="margin-top:0.5rem">
+    📊 <b>95% Bootstrap Confidence Intervals</b> (5,000 resamples)<br>
+    Shootout conversion: <b>{m_a['shootout_conversion']:.1%}</b> 
+    &nbsp;·&nbsp; 95% CI: {m_a['shootout_conversion_95ci'][0]:.1%} – {m_a['shootout_conversion_95ci'][1]:.1%}<br>
+    In-game conversion: <b>{m_a['ingame_conversion']:.1%}</b> 
+    &nbsp;·&nbsp; 95% CI: {m_a['ingame_conversion_95ci'][0]:.1%} – {m_a['ingame_conversion_95ci'][1]:.1%}<br>
+    <span style="color:#888;font-size:0.82rem">CIs overlap slightly — the gap is substantial but not yet statistically significant at p&lt;0.05 
+    at n=202. Directional claim is robust; precise probability estimates are not.</span>
+    </div>""", unsafe_allow_html=True)
+ 
     st.markdown("---")
     st.markdown('<div class="section-header">Conversion by tournament stage</div>', unsafe_allow_html=True)
 
