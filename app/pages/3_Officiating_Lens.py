@@ -35,7 +35,7 @@ st.markdown("""
 """)
 
 VAR_STATS = {
-    "Overall 2022 WC VAR checks": {"total": 27, "overturned": 25, "source": "ESPN VAR Review Log, Dec 2022"},
+    "Overall 2022 WC VAR reviews": {"total": 27, "overturned": 25, "source": "ESPN VAR Review Log, Dec 2022"},
     "Penalty decisions checked": {"total": 9, "overturned": 5, "source": "FIFA 2022 WC Technical Report"},
     "Red card checks": {"total": 5, "overturned": 1, "source": "FIFA 2022 WC Technical Report"},
     "Goal checks (offside/foul)": {"total": 8, "overturned": 0, "source": "FIFA 2022 WC Technical Report"},
