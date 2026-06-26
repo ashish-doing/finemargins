@@ -209,6 +209,7 @@ with right:
     st.page_link("pages/3_Officiating_Lens.py", label="🟨 Officiating Lens — VAR & Laws explained", icon="🟨")
     st.page_link("pages/4_Granite_Chat.py", label="💬 Ask Granite — IBM AI narration", icon="💬")
     st.page_link("pages/5_Tournament_Intel.py", label="📊 Tournament Intel — analyst dashboard", icon="📊")
+    st.page_link("pages/6_Methodology.py", label="🔬 Methodology — why every pipeline decision was made", icon="🔬")
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("### 🛠️ Powered by")
@@ -229,6 +230,9 @@ with right:
 # ── User Guide ────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("### 📖 How to use FineMargins")
+st.caption("New here? Expand any section below to understand what each page does and how to read its outputs. Or jump directly to → [🔬 Methodology](/?page=6_Methodology) for the full technical pipeline explanation.")
+st.page_link("pages/6_Methodology.py", label="🔬 Jump to Methodology page →", icon="🔬")
+st.markdown("<br>", unsafe_allow_html=True)
 
 with st.expander("⚡ Pressure Lens"):
     st.markdown("""
@@ -333,4 +337,33 @@ Lets you see at a glance which combinations of stage and match period produce th
 
 **Key facts table** — every verified number from the full dataset in one scannable reference, 
 with source attribution for each figure.
+""")
+
+with st.expander("🔬 Methodology"):
+    st.markdown("""
+**The full technical reasoning behind every design decision in this pipeline.**
+
+*Why residual analysis, not raw prediction* — Model B predicts the difference between
+actual outcome and StatsBomb's baseline xG, not the raw outcome itself. This isolates the
+pressure effect above shot quality. A raw prediction model conflates shot difficulty with
+pressure context; the residual approach asks whether pressure explains variance *above and
+beyond* what shot quality already predicts.
+
+*Why AUC 0.518 is the correct finding, not a failure* — Pressure context features predict
+individual penalty outcomes barely better than random. This is consistent with the
+sports-science literature on penalty psychology: pressure shifts population-level base rates
+but contains large irreducible variance at the individual level. Reporting AUC 0.518
+prominently is a deliberate design decision — a system that buries a low AUC is not trustworthy.
+
+*Why logistic regression, not XGBoost* — n=202 binary outcomes (Model A) does not support
+a high-capacity model without real overfitting risk. Logistic regression with 4 features is
+the appropriately-complex model for this dataset. It also enables exact SHAP attribution.
+
+*Why SHAP LinearExplainer is exact here* — For linear models, SHAP has a closed-form solution.
+The LinearExplainer computes exact Shapley values analytically — no sampling, no approximation.
+Every SHAP waterfall chart in the Pressure Lens is exact attribution, not an estimate.
+
+*Why 5-fold CV, not a train/test split* — At n=202 with class imbalance, a held-out 20% test
+set gives ~40 samples with high AUC variance. Stratified 5-fold CV gives lower-variance estimates
+with each observation appearing exactly once in a test fold.
 """)
