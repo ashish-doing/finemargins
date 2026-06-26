@@ -119,7 +119,7 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 |---|---|---|
 | **IBM Granite** (watsonx.ai) | `ibm/granite-4-h-small` | Narration in 3 voice modes (fan · analyst · referee trainee). Never fabricates — all context injected via MCP tools |
 | **IBM Docling** | 2.103.0 | Parses the IFAB Laws of the Game 2025/26 PDF → `law_chunks.json`. Law 14 verified via IBM Bob |
-| **IBM Context Forge MCP** | 1.0.3 | 3 tools: `get_pressure_profile`, `get_law_text`, `get_overturn_rate` — read real parquet/JSON or raise `ToolDataError`. No hallucination path exists |
+| **IBM Context Forge MCP** | 1.0.3 | 3 tools (`get_pressure_profile`, `get_law_text`, `get_overturn_rate`) implemented as a Context Forge MCP server in `ibm_layer/tools.py`. HF Spaces deployment calls tools directly as Python functions for reliability (mcpgateway requires a persistent server process that conflicts with Streamlit's single-process model). Tool schema, `ToolDataError` anti-hallucination pattern, and grounding architecture are production-ready. |
 | **IBM Bob** | 1.0.4 | Law 14 penalty kick summarisation, SHAP LinearExplainer debugging, `officiating_scenarios.json` scaffolding, feature engineering iteration |
 
 ---

@@ -440,10 +440,12 @@ ibm_stack = [
      "Lens and Granite Chat draw from it so law citations are grounded in actual document content, not "
      "Granite's training knowledge."),
     ("IBM Context Forge MCP 1.0.3", "Tool grounding",
-     "Three tools — get_pressure_profile, get_law_text, get_overturn_rate — wrap the real parquet/JSON "
-     "data and expose them to Granite as callable functions. This is the anti-hallucination layer: "
-     "Granite cannot make up a conversion rate because the tool either returns a real number from the "
-     "pipeline or raises ToolDataError. No number in any Granite narration is invented."),
+     "Three tools (get_pressure_profile, get_law_text, get_overturn_rate) implemented as a Context Forge "
+    "MCP server in ibm_layer/tools.py. The HF Spaces deployment calls them as direct Python functions "
+    "for reliability — mcpgateway requires a persistent server process that conflicts with Streamlit's "
+    "single-process model on HF. The tool schema, ToolDataError anti-hallucination pattern, and "
+    "grounding architecture are all production-ready and verified locally. No number in any Granite "
+    "narration is invented — every value traces to a real parquet file or sourced JSON."),
     ("IBM Bob 1.0.4", "Development assistant",
      "Used throughout the build for Law 14 penalty kick regulation summarisation, debugging the "
      "SHAP LinearExplainer integration, and generating the officiating_scenarios.json template. "

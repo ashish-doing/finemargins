@@ -377,7 +377,7 @@ footer a:hover{color:var(--text)}
     <div class="ibm-card">
       <div class="ibm-icon">🔗</div>
       <h4>IBM Context Forge MCP</h4>
-      <p>MCP gateway wrapping three typed data tools. Granite never generates a statistic freely — every number comes from a real tool call to the processed dataset.</p>
+      <p>Three tools implemented as a Context Forge MCP server in <code>ibm_layer/tools.py</code>. HF Spaces deployment calls them as direct Python functions — mcpgateway requires a persistent server process that conflicts with Streamlit's single-process model. Tool schema and ToolDataError anti-hallucination pattern are production-ready.</p>
       <span class="version">mcpgateway 1.0.3</span>
     </div>
     <div class="ibm-card">
