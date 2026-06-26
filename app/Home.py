@@ -167,6 +167,23 @@ for col, (val, label, sub) in zip([c1,c2,c3,c4,c5,c6], kpis):
 
 st.markdown("<br>", unsafe_allow_html=True)
 
+st.markdown("""
+<div style="background:#0f2040;border:1px solid #0f62fe55;border-radius:8px;
+            padding:0.7rem 1.4rem;margin-bottom:1rem;display:flex;
+            align-items:center;justify-content:space-between;gap:1rem">
+  <span style="color:#a8c8ff;font-size:0.9rem">
+    📖 <b>New to FineMargins?</b> — Learn what each page does and how to read the outputs.
+  </span>
+  <a href="#how-to-use-finemargins" style="background:#0f62fe;color:#fff;
+     border-radius:6px;padding:6px 16px;font-size:0.82rem;font-weight:600;
+     text-decoration:none;white-space:nowrap">
+    How to use ↓
+  </a>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
 # ── Two columns: Key Findings + Navigation ──────────────────────────────────
 left, right = st.columns([3, 2], gap="large")
 
