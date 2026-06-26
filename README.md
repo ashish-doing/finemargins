@@ -36,7 +36,6 @@ pinned: false
 <p align="center">
   🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App (HuggingFace Spaces)</a> &nbsp;•&nbsp;
   🌐 <a href="https://ashish-doing.github.io/finemargins">Landing Page</a> &nbsp;•&nbsp;
-  📂 <a href="https://github.com/ashish-doing/finemargins">GitHub</a> &nbsp;•&nbsp;
   🔬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins/blob/main/app/pages/6_Methodology.py">Methodology</a> &nbsp;•&nbsp;
   🟨 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Officiating Lens</a> &nbsp;•&nbsp;
   💬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Ask Granite</a>
@@ -60,6 +59,15 @@ Explains 6 real, documented VAR incidents (5 from Qatar 2022 + 1 from the live 2
 
 **IBM Granite Narration**
 Three audience modes (fan · analyst · referee trainee) grounded via IBM Context Forge MCP tools — Granite is never allowed to fabricate a statistic. Every number traces to a real parquet file or verified source.
+
+---
+
+## Demo
+
+[![FineMargins Live App](https://img.shields.io/badge/▶%20Try%20Live%20App-HuggingFace%20Spaces-FF9D00?style=for-the-badge)](https://huggingface.co/spaces/ashish-doing/finemargins)
+
+> 📹 Demo video coming before submission deadline. Live app is fully functional — open it and navigate all 7 pages from the sidebar.
+
 
 ---
 
@@ -93,15 +101,17 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 
 ## App Pages
 
+> All 7 pages are part of the live app at [huggingface.co/spaces/ashish-doing/finemargins](https://huggingface.co/spaces/ashish-doing/finemargins) — navigate between them using the sidebar after opening.
+
 | Page | What It Shows |
 |---|---|
-| 🏠 **[Home](https://huggingface.co/spaces/ashish-doing/finemargins)** | Animated pitch hero, 2026 WC live banner, key findings, KPI cards |
-| ⚡ **[Pressure Lens](https://huggingface.co/spaces/ashish-doing/finemargins)** | Penalty conversion charts, SHAP waterfall per kick, landmark explorer, xG residual by minute |
-| 👤 **[Player Profile](https://huggingface.co/spaces/ashish-doing/finemargins)** | 159 players, head-to-head comparison, pressure stats |
-| 🟨 **[Officiating Lens](https://huggingface.co/spaces/ashish-doing/finemargins)** | 6 VAR scenarios, Law citations (Docling), overturn rates — with 🔴 LIVE 2026 badge |
-| 💬 **[Granite Chat](https://huggingface.co/spaces/ashish-doing/finemargins)** | 7 prebuilt contexts, 3 narration modes, live Granite or verified demo |
-| 📊 **[Tournament Intel](https://huggingface.co/spaces/ashish-doing/finemargins)** | Cross-tournament CRM dashboard, player leaderboard (CSV export), pressure heatmap |
-| 🔬 **[Methodology](https://huggingface.co/spaces/ashish-doing/finemargins)** | Full pipeline decisions: why residual, why logistic regression, why SHAP LinearExplainer is exact, why AUC 0.518 is correct |
+| 🏠 **Home** | Animated pitch hero, 2026 WC live banner, key findings, KPI cards |
+| ⚡ **Pressure Lens** | Penalty conversion charts, SHAP waterfall per kick, landmark explorer, xG residual by minute |
+| 👤 **Player Profile** | 159 players, head-to-head comparison, pressure stats |
+| 🟨 **Officiating Lens** | 6 VAR scenarios, Law citations (Docling), overturn rates — with 🔴 LIVE 2026 badge |
+| 💬 **Granite Chat** | 7 prebuilt contexts, 3 narration modes, live Granite or verified demo |
+| 📊 **Tournament Intel** | Cross-tournament CRM dashboard, player leaderboard (CSV export), pressure heatmap |
+| 🔬 **Methodology** | Full pipeline decisions: why residual, why logistic regression, why SHAP LinearExplainer is exact, why AUC 0.518 is correct |
 
 ---
 
