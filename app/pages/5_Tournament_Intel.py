@@ -260,6 +260,13 @@ with lc:
         }
     )
 
+    st.download_button(
+        label="⬇️ Download leaderboard as CSV",
+        data=display.to_csv(index=False),
+        file_name="finemargins_player_leaderboard.csv",
+        mime="text/csv",
+    )
+
 with rc:
     st.markdown("#### Conversion distribution — all players with ≥2 kicks")
     q_data = profiles[profiles.total_penalties >= 2]["conversion_rate"] * 100

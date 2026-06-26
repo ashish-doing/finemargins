@@ -68,7 +68,10 @@ context_type = st.selectbox(
     ["Pressure data — shootout vs in-game penalties",
      "Late-game shot residual findings",
      "VAR incident: Japan vs Spain goal-line call",
-     "VAR incident: Dembele penalty in the 2022 Final"]
+     "VAR incident: Dembele penalty in the 2022 Final",
+     "2026 WC: SAOT outage — what happens without the tech?",
+     "Counter-intuitive finding: sudden-death kicks convert higher",
+     "Tournament comparison: 2018 WC vs 2022 WC vs WWC 2023"]
 )
 
 PREBUILT_CONTEXTS = {
@@ -112,6 +115,42 @@ PREBUILT_CONTEXTS = {
         "data": scenarios[1] if len(scenarios) > 1 else {},
         "default_q": "What does the VAR protocol say about overturning on-field penalty decisions?"
     },
+
+    "2026 WC: SAOT outage — what happens without the tech?": {
+        "type": "officiating",
+        "data": next((s for s in scenarios if "2026" in s.get("tournament", "")), scenarios[-1] if scenarios else {}),
+        "default_q": "What are the officiating implications when SAOT is unavailable — does the standard of proof change for offside decisions?"
+    },
+    "Counter-intuitive finding: sudden-death kicks convert higher": {
+        "type": "pressure",
+        "data": {
+            "finding": "sudden_death_paradox",
+            "sudden_death_conversion": m_a["sudden_death_conversion"],
+            "sudden_death_n": m_a["sudden_death_n"],
+            "shootout_conversion": m_a["shootout_conversion"],
+            "ingame_conversion": m_a["ingame_conversion"],
+            "overall_conversion": m_a["overall_conversion"],
+            "model_auc": m_a["cv_auc"],
+            "note": "Sudden-death kicks (n=14) converted at a higher rate than standard shootout kicks despite higher elimination stakes.",
+        },
+        "default_q": "Why do sudden-death penalty kicks in World Cup shootouts appear to convert at a higher rate than standard shootout kicks — is this a real effect or a sample size artefact?"
+    },
+    "Tournament comparison: 2018 WC vs 2022 WC vs WWC 2023": {
+        "type": "tournament",
+        "data": {
+            "tournaments": ["2018 WC", "2022 WC", "WWC 2023"],
+            "total_matches": 192,
+            "total_penalties": m_a["n"],
+            "overall_conversion": m_a["overall_conversion"],
+            "shootout_conversion": m_a["shootout_conversion"],
+            "ingame_conversion": m_a["ingame_conversion"],
+            "late_shot_n": metrics["model_b_late_shot_residual"]["n"],
+            "expected_goals": metrics["model_b_late_shot_residual"]["sum_expected_goals"],
+            "actual_goals": metrics["model_b_late_shot_residual"]["actual_goals"],
+            "note": "All three tournaments use StatsBomb open event data. WWC 2023 tests whether pressure effects are consistent across competition formats.",
+        },
+        "default_q": "How do penalty conversion rates and late-game scoring patterns compare across the 2018 WC, 2022 WC, and Women's World Cup 2023?"
+    },
 }
 
 ctx = PREBUILT_CONTEXTS[context_type]
@@ -147,7 +186,41 @@ The Japan-Spain incident is a textbook example of why VAR uses a dedicated frame
 This is not a failure of VAR — it's exactly the scenario VAR exists for: a decision that cannot be made reliably with the human eye in real time, resolved by the best available technology. The key principle for trainees: trust the process (the angle, the frame, the line standard) not the intuition, and communicate the reason for the decision clearly.
 
 What you cannot know as an official: whether the camera's frame rate was high enough to capture the precise moment of maximum ball travel, or whether any occlusion by a player's boot introduced measurement uncertainty. Both are genuine epistemic limits, not procedural failures.
-"""
+""",
+
+    ("fan", "2026 WC: SAOT outage — what happens without the tech?"): """
+In the 2026 World Cup opener, Switzerland got a penalty that replays suggested might have been offside — but VAR didn't overturn it, and there was no animation shown to fans. Hours later, FIFA said the system that draws those 3D offside graphics had a brief outage.
+
+Here's what that means: normally, Semi-Automated Offside Technology (SAOT) uses 12 cameras and tracks 29 points on each player's skeleton to calculate offside to the millimetre. When that's unavailable, the VAR officials have to use the old manual method — and the bar they set themselves is deliberately higher: only overturning something if it's "clear and obvious," not borderline.
+
+So the question fans are right to ask is: would SAOT have flagged this? We genuinely don't know. That's not a dodge — it's the honest answer. The measurement that would have determined it was never made.
+""",
+    ("analyst", "Counter-intuitive finding: sudden-death kicks convert higher"): """
+The sudden-death conversion rate in this dataset is 71.4% (n=14) versus 65.0% for standard shootout kicks. This is counter-intuitive given the elimination stakes and contradicts naive pressure-monotonicity assumptions.
+
+Three plausible explanations, in order of parsimony:
+
+1. Selection effect: Players who reach sudden death have survived earlier kicks or been held in reserve — there may be a positive selection on penalty-taking ability. Unverifiable without lineup/order data by kick position.
+
+2. Psychological ceiling: The "nothing to lose" frame may actually reduce inhibitory arousal at the most extreme stakes. Jordet's 2009 work on shame-avoidance vs approach motivation in shootouts is relevant here.
+
+3. Small sample artefact: n=14 sudden-death kicks. The 95% CI on that conversion rate is very wide. This finding is directionally interesting, not statistically conclusive.
+
+Model A AUC 0.518 is consistent with all three explanations — pressure context at the individual level contains irreducible variance that these features cannot capture.
+""",
+    ("analyst", "Tournament comparison: 2018 WC vs 2022 WC vs WWC 2023"): """
+Across 192 matches and 202 penalty kicks pooled from three tournaments, the pressure patterns are consistent enough to suggest the shootout-vs-in-game gap (~9.7pp) is a real, cross-tournament phenomenon rather than a 2022-specific finding.
+
+Key structural differences to note when interpreting cross-tournament comparisons:
+
+— Format differences: WWC 2023 included a 32-team group stage for the first time, changing the match mix. More group-stage matches means more low-stakes penalties in the aggregate.
+
+— Goalkeeper quality: The 2022 WC featured several specialist shootout goalkeepers (Bounou, Diogo Costa). This is unquantified but plausibly depresses the 2022 shootout conversion rate relative to 2018.
+
+— SAOT deployment: SAOT debuted in 2022, changing how close offside calls in penalty build-ups were adjudicated. This affects which penalties were awarded, not how they were taken.
+
+The xG residual finding (players slightly underperforming expected goals in knockout late-game situations, mean residual -0.0071 vs -0.0061 in group stages) is consistent across all three tournaments when segmented, though the effect size is small.
+""",
 }
 
 # ── Generate / show response ──────────────────────────────────────────────────

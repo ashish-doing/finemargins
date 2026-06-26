@@ -62,17 +62,34 @@ cat_icons = {
     "shootout": "🎯",
 }
 
+def _format_scenario(sid):
+    s = next(sc for sc in scenarios if sc['scenario_id'] == sid)
+    label = f"{cat_icons.get(s['category'],'⚽')} {s['title']}"
+    if s['tournament'] == "FIFA World Cup 2026":
+        label += "  🔴 LIVE 2026"
+    return label
+
 selected_id = st.radio(
     "Choose an incident to examine:",
     options=[s['scenario_id'] for s in scenarios],
-    format_func=lambda sid: next(
-        f"{cat_icons.get(s['category'],'⚽')} {s['title']}"
-        for s in scenarios if s['scenario_id'] == sid
-    ),
+    format_func=_format_scenario,
     horizontal=True,
 )
 
 scenario = next(s for s in scenarios if s['scenario_id'] == selected_id)
+
+if scenario['tournament'] == "FIFA World Cup 2026":
+    st.markdown("""
+    <div style="background:#1a0000;border:1px solid #fa4d5688;border-radius:8px;
+                padding:0.7rem 1.2rem;margin-bottom:1rem;display:flex;align-items:center;gap:10px">
+      <span style="background:#fa4d56;color:#fff;font-size:0.75rem;font-weight:700;
+                   border-radius:4px;padding:2px 8px">🔴 LIVE</span>
+      <span style="color:#ffb3b8;font-size:0.88rem">
+        This scenario is from the <b>ongoing FIFA World Cup 2026</b> — the first from a live tournament.
+        FIFA confirmed a SAOT technical outage after the match. Data sourced from official post-match reports.
+      </span>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown(f"""
 <div class="var-card">
