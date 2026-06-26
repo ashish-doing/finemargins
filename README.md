@@ -34,8 +34,8 @@ pinned: false
 </p>
 
 <p align="center">
-  🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App (HuggingFace Spaces)</a> &nbsp;•&nbsp;
   🌐 <a href="https://ashish-doing.github.io/finemargins">Landing Page</a> &nbsp;•&nbsp;
+  🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App</a> &nbsp;•&nbsp;
   🔬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins/blob/main/app/pages/6_Methodology.py">Methodology</a> &nbsp;•&nbsp;
   🟨 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Officiating Lens</a> &nbsp;•&nbsp;
   💬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Ask Granite</a>
