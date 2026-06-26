@@ -80,7 +80,7 @@ PREBUILT_CONTEXTS = {
         "data": {
             "shootout_conversion": m_a["shootout_conversion"],
             "ingame_conversion": m_a["ingame_conversion"],
-            "shootout_n": m_a["sudden_death_n"] + 109,  # approx; actual from metrics
+            "shootout_n": 123,  # real value from penalty_shap.parquet is_shootout.sum()
             "ingame_n": 79,
             "overall_n": m_a["n"],
             "overall_conversion": m_a["overall_conversion"],

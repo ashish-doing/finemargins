@@ -75,12 +75,10 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 
 | Criterion | How FineMargins Addresses It |
 |---|---|
-| **Technical Execution** | Two real ML models (AUC 0.518 + 0.773), exact SHAP LinearExplainer, 5-fold CV, 18/18 tests passing, Docker deployment on HF Spaces, 6 app pages |
-| **Innovation** | Officiating Lens (VAR + Laws of the Game) has no equivalent in the June pool. Residual-vs-xG methodology isolates pressure above shot quality — stronger than a raw prediction model |
-| **Challenge Fit** | "AI Inside the Match" — covers pressure (penalty/late-game), officiating (VAR/Laws), players (159 profiles), and live 2026 WC data |
-| **Implementation** | Live on HuggingFace Spaces with 4 IBM tech integrations, full demo mode without credentials, Context Forge MCP anti-hallucination layer |
-| **Feasibility** | Python 3.10 pinned, version-locked requirements, all data pre-committed as parquet, demo fallback for every live dependency |
-| **IBM Bob Integration** | Used throughout: Law 14 summarisation, SHAP integration debugging, officiating_scenarios.json scaffolding, feature engineering iteration |
+| **Technical Execution** | Two real ML models — AUC 0.518 (penalty pressure, honest null result) and AUC 0.773 vs xG-only baseline 0.807 (pressure doesn't improve individual discrimination over xG — stated finding, not hidden). Exact SHAP LinearExplainer, 5-fold CV, 18/18 tests passing, Docker on HF Spaces, 7 pages. IBM Granite confirmed live 🟢. |
+| **Innovation** | Officiating Lens (VAR + Laws of the Game) has no equivalent in the June pool. Residual-vs-xG methodology isolates pressure above shot quality — stronger than a raw prediction model. |
+| **Challenge Fit** | "AI Inside the Match" — 202 penalties, 1,228 late-game shots, 6 VAR incidents including live 2026 WC SAOT outage 🔴, 159 player profiles, IBM Granite in 3 audience modes, 7 pages across 192 real World Cup matches. |
+| **Implementation & Feasibility** | Live on HF Spaces (Docker), full demo mode without credentials, all data pre-committed as parquet, demo fallback for every live dependency. Referee development programs could use the Officiating Lens as-is in a training session — no integration cost. |
 
 ---
 
@@ -93,7 +91,7 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 | xG overestimate in late-game | 110.87 xG expected → 103 actual goals — **7.87 goal overestimate** | StatsBomb open data |
 | Knockout xG residual | **−0.0071/shot** vs −0.0061 group stage — pressure suppresses chance quality | StatsBomb open data |
 | Individual penalty AUC | **0.518** — pressure context barely beats random; the honest finding, reported prominently | 5-fold CV |
-| Late-shot pressure model AUC | **0.773** vs xG-alone baseline 0.807 — shot quality dominates, pressure shifts volume | 5-fold CV |
+| Late-shot pressure model AUC | **0.773** vs xG-only baseline **0.807** — pressure context does *not* improve individual shot discrimination over xG alone. Population-level pressure effects (visible in residuals) don't translate to better individual prediction. This is the correct finding, stated honestly. | 5-fold CV |
 | 2022 WC VAR overall overturn rate | **92.6% (25/27)** | ESPN VAR Review Log, Dec 2022 |
 | 2022 WC penalty VAR overturn rate | **55.6% (5/9)** | FIFA 2022 WC Technical Report |
 
@@ -188,6 +186,14 @@ Model B takes the residual (actual outcome − StatsBomb xG) for 1,228 late-game
 AUC 0.518 on Model A (individual penalty prediction) is reported prominently because it is the correct finding. A system that hides a low AUC is not trustworthy. A system that explains why it is low — and what that means about the limits of pressure modelling — is.
 
 The full methodology is in the **🔬 Methodology** page of the app.
+
+---
+
+## Path to Real Use
+
+The most direct pickup path is referee development. National associations and confederation referee programs already run post-tournament incident review as standard training — an instructor pulls up a real call and walks trainees through it. FineMargins is a structured version of that: real Law text, the actual historical overturn rate for that category, and an explicit "what the system cannot know" panel that gives the instructor something to discuss rather than a verdict to hand down. A referee development department could use the Officiating Lens as-is in a training session tomorrow — no integration cost, already deployed.
+
+Secondary use case: second-screen companion for broadcasters during the 2026 World Cup. The honest "AUC 0.518 on individual prediction" framing is a feature here, not a hedge — it separates this from the overconfident prediction tools that dominate that space.
 
 ---
 

@@ -132,11 +132,24 @@ components.html("""
 """, height=330)
 
 # ── 2026 World Cup Live Banner ────────────────────────────────────────────────
+from datetime import date
+_today = date.today()
+if _today <= date(2026, 6, 27):
+    _phase = "Group stage underway — final matchdays June 26–27."
+elif _today <= date(2026, 7, 4):
+    _phase = "Round of 32 underway."
+elif _today <= date(2026, 7, 11):
+    _phase = "Quarter-finals underway."
+elif _today <= date(2026, 7, 15):
+    _phase = "Semi-finals underway."
+elif _today <= date(2026, 7, 19):
+    _phase = "Final on July 19."
+else:
+    _phase = "Tournament complete — full historical record now available."
+
 st.info(
-    "🏆 **The 2026 FIFA World Cup is live** — hosted across the USA, Canada & Mexico. "
-    "Group stage final matchdays wrap June 26–27, with the Round of 32 already underway. "
-    "This app analyses the historical data that built these teams' reputations. "
-    "Use the lenses below to benchmark today's moments against real World Cup patterns."
+    f"🏆 **The 2026 FIFA World Cup** — hosted across the USA, Canada & Mexico. "
+    f"{_phase} Use the lenses below to benchmark live moments against real historical pressure patterns."
 )
 
 # ── Live KPIs ─────────────────────────────────────────────────────────────────
