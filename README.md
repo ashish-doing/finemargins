@@ -26,7 +26,7 @@ pinned: false
   <a href="#"><img src="https://img.shields.io/badge/Matches-192%20World%20Cup-42be65?style=for-the-badge" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Tests-18%20passing-brightgreen?style=for-the-badge&logo=pytest" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green?style=for-the-badge" /></a>
+  
 </p>
 
 <p align="center">
@@ -323,4 +323,4 @@ finemargins/
 ---
 
 *Built for the IBM SkillsBuild AI Builders Challenge, June 2026 — "AI Inside the Match"*
-*Data: StatsBomb Open Data (StatsBomb Public Data User Agreement) · Laws: IFAB Laws of the Game 2025/26*
+*MIT License · Data: StatsBomb Open Data (StatsBomb Public Data User Agreement) · Laws: IFAB Laws of the Game 2025/26*
