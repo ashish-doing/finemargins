@@ -10,7 +10,7 @@ pinned: false
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Syne&weight=800&size=26&duration=3000&pause=1000&color=0f62fe&center=true&vCenter=true&width=1100&lines=FineMargins+%E2%80%94+World+Cup+Pressure+Intelligence;192+real+matches+%C2%B7+202+penalties+%C2%B7+1%2C228+late-game+shots;IBM+Granite+%C2%B7+Docling+%C2%B7+Context+Forge+MCP+%C2%B7+IBM+Bob;AI+Inside+the+Match+%E2%80%94+IBM+SkillsBuild+June+2026" alt="FineMargins" />
+<img src="https://readme-typing-svg.demolab.com?font=Syne&weight=800&size=26&duration=3000&pause=1000&color=00b386&center=true&vCenter=true&width=1100&lines=FineMargins+%E2%80%94+World+Cup+Pressure+Intelligence;192+real+matches+%C2%B7+202+penalties+%C2%B7+1%2C228+late-game+shots;IBM+Granite+%C2%B7+Docling+%C2%B7+Context+Forge+MCP+%C2%B7+IBM+Bob;AI+Inside+the+Match+%E2%80%94+IBM+SkillsBuild+June+2026" alt="FineMargins" />
 
 </div>
 
@@ -36,7 +36,10 @@ pinned: false
 <p align="center">
   🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App (HuggingFace Spaces)</a> &nbsp;•&nbsp;
   🌐 <a href="https://ashish-doing.github.io/finemargins">Landing Page</a> &nbsp;•&nbsp;
-  📂 <a href="https://github.com/ashish-doing/finemargins">GitHub</a>
+  📂 <a href="https://github.com/ashish-doing/finemargins">GitHub</a> &nbsp;•&nbsp;
+  🔬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins/blob/main/app/pages/6_Methodology.py">Methodology</a> &nbsp;•&nbsp;
+  🟨 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Officiating Lens</a> &nbsp;•&nbsp;
+  💬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Ask Granite</a>
 </p>
 
 ---
@@ -92,13 +95,13 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 
 | Page | What It Shows |
 |---|---|
-| 🏠 **Home** | Animated pitch hero, 2026 WC live banner, key findings, KPI cards |
-| ⚡ **Pressure Lens** | Penalty conversion charts, SHAP waterfall per kick, landmark explorer, xG residual by minute |
-| 👤 **Player Profile** | 159 players, head-to-head comparison, pressure stats |
-| 🟨 **Officiating Lens** | 6 VAR scenarios, Law citations (Docling), overturn rates — with 🔴 LIVE 2026 badge |
-| 💬 **Granite Chat** | 7 prebuilt contexts, 3 narration modes, live Granite or verified demo |
-| 📊 **Tournament Intel** | Cross-tournament CRM dashboard, player leaderboard (CSV export), pressure heatmap |
-| 🔬 **Methodology** | Full pipeline decisions: why residual, why logistic regression, why SHAP LinearExplainer is exact, why AUC 0.518 is correct |
+| 🏠 **[Home](https://huggingface.co/spaces/ashish-doing/finemargins)** | Animated pitch hero, 2026 WC live banner, key findings, KPI cards |
+| ⚡ **[Pressure Lens](https://huggingface.co/spaces/ashish-doing/finemargins)** | Penalty conversion charts, SHAP waterfall per kick, landmark explorer, xG residual by minute |
+| 👤 **[Player Profile](https://huggingface.co/spaces/ashish-doing/finemargins)** | 159 players, head-to-head comparison, pressure stats |
+| 🟨 **[Officiating Lens](https://huggingface.co/spaces/ashish-doing/finemargins)** | 6 VAR scenarios, Law citations (Docling), overturn rates — with 🔴 LIVE 2026 badge |
+| 💬 **[Granite Chat](https://huggingface.co/spaces/ashish-doing/finemargins)** | 7 prebuilt contexts, 3 narration modes, live Granite or verified demo |
+| 📊 **[Tournament Intel](https://huggingface.co/spaces/ashish-doing/finemargins)** | Cross-tournament CRM dashboard, player leaderboard (CSV export), pressure heatmap |
+| 🔬 **[Methodology](https://huggingface.co/spaces/ashish-doing/finemargins)** | Full pipeline decisions: why residual, why logistic regression, why SHAP LinearExplainer is exact, why AUC 0.518 is correct |
 
 ---
 
@@ -210,10 +213,31 @@ streamlit run app/Home.py
 
 ```bash
 pytest tests/ -v
-# 18 passed
+# 18 passed in ~0.4s
 ```
 
-18 tests across `test_pipeline.py` and `test_contracts.py` covering feature engineering, model output contracts, and tool data grounding.
+| Test | What It Verifies |
+|---|---|
+| `test_build_penalty_features` | `is_goal`, `stage_weight`, `is_knockout` computed correctly from raw shots |
+| `test_sudden_death_detection` | Kick order > 10 in a shootout → `is_sudden_death = 1` |
+| `test_minutes_remaining` | Period/minute → correct time-remaining calculation |
+| `test_build_late_shot_features` | `xg_residual = is_goal − xg`, `is_extra_time` flags |
+| `test_stage_weight_mapping` | Group Stage = 0.0, Final = 1.0, all 6 stages correct |
+| `test_penalty_contract` | Model output dict has all required keys and value ranges |
+| `test_late_shot_contract` | AUC, brier, coefficients present and within valid bounds |
+| `test_tool_data_error_on_missing_file` | `ToolDataError` raised if parquet absent — no hallucination path |
+| `test_get_law_text_valid` | Law 14 returns sections with correct law_number |
+| `test_get_law_text_missing` | Non-existent law raises `ToolDataError`, not KeyError |
+| `test_get_overturn_rate_valid` | Known category returns rate + source |
+| `test_get_overturn_rate_missing` | Unknown category raises `ToolDataError` |
+| `test_bootstrap_ci_width` | 95% CI width > 0 and bounds ordered correctly |
+| `test_cv_auc_above_chance` | Model B AUC > 0.5 on real data |
+| `test_shap_values_sum` | SHAP values sum to log-odds difference (LinearExplainer exactness) |
+| `test_penalty_n_correct` | Exactly 202 penalty rows in processed parquet |
+| `test_late_shot_n_correct` | Exactly 1,228 late-shot rows in processed parquet |
+| `test_player_profile_columns` | All required columns present in player_profiles parquet |
+
+Pattern: assert on **outcomes** (return values, schema, error types), not internal mock calls.
 
 ---
 
