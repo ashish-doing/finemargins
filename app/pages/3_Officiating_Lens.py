@@ -73,7 +73,7 @@ selected_id = st.radio(
     "Choose an incident to examine:",
     options=[s['scenario_id'] for s in scenarios],
     format_func=_format_scenario,
-    horizontal=True,
+    horizontal=False,
 )
 
 scenario = next(s for s in scenarios if s['scenario_id'] == selected_id)

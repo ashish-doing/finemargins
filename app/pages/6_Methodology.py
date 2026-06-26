@@ -115,7 +115,7 @@ st.markdown("""
 # ─── SECTION 1: THE CORE QUESTION ───────────────────────────────────────────
 st.markdown('<div class="section-title">1. The core question — and why it matters how you frame it</div>', unsafe_allow_html=True)
 
-q1, q2 = st.columns([3, 2])
+q1, q2 = st.columns([3, 2], gap="large")
 with q1:
     st.markdown("""
     Most sports AI systems ask: **"Can I predict whether this shot will go in?"**  

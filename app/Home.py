@@ -167,20 +167,19 @@ for col, (val, label, sub) in zip([c1,c2,c3,c4,c5,c6], kpis):
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.markdown("""
-<div style="background:#0f2040;border:1px solid #0f62fe55;border-radius:8px;
-            padding:0.7rem 1.4rem;margin-bottom:1rem;display:flex;
-            align-items:center;justify-content:space-between;gap:1rem">
-  <span style="color:#a8c8ff;font-size:0.9rem">
-    📖 <b>New to FineMargins?</b> — Learn what each page does and how to read the outputs.
-  </span>
-  <a href="#how-to-use-finemargins" style="background:#0f62fe;color:#fff;
-     border-radius:6px;padding:6px 16px;font-size:0.82rem;font-weight:600;
-     text-decoration:none;white-space:nowrap">
-    How to use ↓
-  </a>
-</div>
-""", unsafe_allow_html=True)
+how_to_col, btn_col = st.columns([6, 1])
+with how_to_col:
+    st.markdown("""
+    <div style="background:#0f2040;border:1px solid #0f62fe55;border-radius:8px;
+                padding:0.7rem 1.4rem;display:flex;align-items:center;gap:10px">
+      <span style="color:#a8c8ff;font-size:0.9rem">
+        📖 <b>New to FineMargins?</b> — Learn what each page does and how to read the outputs.
+      </span>
+    </div>
+    """, unsafe_allow_html=True)
+with btn_col:
+    if st.button("How to use ↓", type="primary", use_container_width=True):
+        st.session_state["show_how_to"] = True
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -247,6 +246,8 @@ with right:
 # ── User Guide ────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("### 📖 How to use FineMargins")
+if st.session_state.get("show_how_to"):
+    st.session_state["show_how_to"] = False  # reset after scroll lands here
 st.caption("New here? Expand any section below to understand what each page does and how to read its outputs. Or jump directly to the Methodology page using the button below.")
 st.page_link("pages/6_Methodology.py", label="Jump to Methodology page →", icon="🔬")
 st.markdown("<br>", unsafe_allow_html=True)
