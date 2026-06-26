@@ -204,12 +204,12 @@ with left:
 
 with right:
     st.markdown("### 🗺️ Explore the lenses")
-    st.page_link("pages/1_Pressure_Lens.py", label="⚡ Pressure Lens — penalties & late shots", icon="⚡")
-    st.page_link("pages/2_Player_Profile.py", label="👤 Player Profiles — 159 players profiled", icon="👤")
-    st.page_link("pages/3_Officiating_Lens.py", label="🟨 Officiating Lens — VAR & Laws explained", icon="🟨")
-    st.page_link("pages/4_Granite_Chat.py", label="💬 Ask Granite — IBM AI narration", icon="💬")
-    st.page_link("pages/5_Tournament_Intel.py", label="📊 Tournament Intel — analyst dashboard", icon="📊")
-    st.page_link("pages/6_Methodology.py", label="🔬 Methodology — why every pipeline decision was made", icon="🔬")
+    st.page_link("pages/1_Pressure_Lens.py", label="Pressure Lens — penalties & late shots", icon="⚡")
+    st.page_link("pages/2_Player_Profile.py", label="Player Profiles — 159 players profiled", icon="👤")
+    st.page_link("pages/3_Officiating_Lens.py", label="Officiating Lens — VAR & Laws explained", icon="🟨")
+    st.page_link("pages/4_Granite_Chat.py", label="Ask Granite — IBM AI narration", icon="💬")
+    st.page_link("pages/5_Tournament_Intel.py", label="Tournament Intel — analyst dashboard", icon="📊")
+    st.page_link("pages/6_Methodology.py", label="Methodology — why every pipeline decision was made", icon="🔬")
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("### 🛠️ Powered by")
@@ -230,8 +230,8 @@ with right:
 # ── User Guide ────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("### 📖 How to use FineMargins")
-st.caption("New here? Expand any section below to understand what each page does and how to read its outputs. Or jump directly to → [🔬 Methodology](/?page=6_Methodology) for the full technical pipeline explanation.")
-st.page_link("pages/6_Methodology.py", label="🔬 Jump to Methodology page →", icon="🔬")
+st.caption("New here? Expand any section below to understand what each page does and how to read its outputs. Or jump directly to the Methodology page using the button below.")
+st.page_link("pages/6_Methodology.py", label="Jump to Methodology page →", icon="🔬")
 st.markdown("<br>", unsafe_allow_html=True)
 
 with st.expander("⚡ Pressure Lens"):
