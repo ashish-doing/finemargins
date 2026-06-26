@@ -238,11 +238,12 @@ footer a:hover{color:var(--text)}
     <div class="lens-card orange">
       <div class="lens-icon">🟨</div>
       <h3>Officiating Lens</h3>
-      <p>Explains 5 real, documented VAR incidents from World Cup history using actual IFAB Laws parsed by IBM Docling, real historical base rates, and an explicit "what this system cannot know" panel per incident.</p>
+      <p>Explains 6 real, documented VAR incidents (5 from Qatar 2022 + 1 from the live 2026 WC SAOT outage) using actual IFAB Laws parsed by IBM Docling, real historical base rates, and an explicit "what this system cannot know" panel — with a 🔴 LIVE 2026 badge on the current tournament scenario.</p>
       <div class="lens-stats">
         <div class="lens-stat">VAR reviews: <span>27</span></div>
         <div class="lens-stat">Overturned: <span>92.6%</span></div>
         <div class="lens-stat">Laws: <span>9·11·12·14</span></div>
+        <div class="lens-stat">🔴 <span>LIVE 2026</span></div>
       </div>
     </div>
   </div>
@@ -271,6 +272,14 @@ footer a:hover{color:var(--text)}
     <div class="finding red">
       <span class="finding-val" style="color:var(--red)">AUC 0.518</span>
       <p>Pressure context predicts individual penalty outcomes barely above chance. Honest finding, not a failure — pressure shifts populations, not individuals. Consistent with sports science.</p>
+    </div>
+    <div class="finding green">
+      <span class="finding-val" style="color:#42be65">92.6%</span>
+      <p>2022 WC VAR overall overturn rate (25/27 reviews). Penalty VAR checks overturned 55.6% (5/9). Source: ESPN VAR Review Log + FIFA 2022 WC Technical Report.</p>
+    </div>
+    <div class="finding">
+      <span class="finding-val">7 pages</span>
+      <p>Full app: Pressure Lens · Player Profile · Officiating Lens · Granite Chat · Tournament Intel · Methodology. The Methodology page documents every pipeline design decision explicitly — why residual, why logistic regression, why SHAP LinearExplainer is exact.</p>
     </div>
   </div>
 </div>
@@ -334,10 +343,11 @@ footer a:hover{color:var(--text)}
         <div class="arch-num">05</div>
         <div class="arch-text">
           <h4>IBM Granite Narration</h4>
-          <p>IBM Granite (ibm/granite-4-h-small via watsonx.ai) narrates findings in three voice modes: fan, analyst, referee trainee. System prompts restrict Granite to numbers from tool calls only — no hallucination possible.</p>
+          <p>IBM Granite (ibm/granite-4-h-small via watsonx.ai) narrates findings in three voice modes: fan, analyst, referee trainee. System prompts restrict Granite to numbers from tool calls only — no hallucination possible. 7-page Streamlit app: Home · Pressure Lens · Player Profile · Officiating Lens · Granite Chat · Tournament Intel · Methodology.</p>
           <span class="arch-tag">IBM Granite (watsonx.ai)</span>
           <span class="arch-tag">ibm-watsonx-ai SDK</span>
-          <span class="arch-tag">Streamlit</span>
+          <span class="arch-tag">Streamlit · 7 pages</span>
+          <span class="arch-tag">Docker on HF Spaces</span>
         </div>
       </div>
     </div>
@@ -390,6 +400,8 @@ footer a:hover{color:var(--text)}
     <a href="https://huggingface.co/spaces/ashish-doing/finemargins" target="_blank" class="btn-outline">⚡ Pressure Lens</a>
     <a href="https://huggingface.co/spaces/ashish-doing/finemargins" target="_blank" class="btn-outline">👤 Player Profiles</a>
     <a href="https://huggingface.co/spaces/ashish-doing/finemargins" target="_blank" class="btn-outline">🟨 Officiating Lens</a>
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins" target="_blank" class="btn-outline">💬 Granite Chat</a>
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins" target="_blank" class="btn-outline">🔬 Methodology</a>
     <a href="https://github.com/ashish-doing/finemargins" target="_blank" class="btn-outline">⭐ GitHub</a>
   </div>
 </div>
@@ -402,6 +414,7 @@ footer a:hover{color:var(--text)}
     <a href="https://github.com/ashish-doing/finemargins" target="_blank">GitHub</a>
     <a href="https://github.com/statsbomb/open-data">StatsBomb Data</a>
     <a href="https://ibm.github.io/mcp-context-forge/">Context Forge</a>
+    <a href="https://huggingface.co/spaces/ashish-doing/finemargins/blob/main/app/pages/6_Methodology.py">Methodology</a>
   </div>
 </footer>
 
