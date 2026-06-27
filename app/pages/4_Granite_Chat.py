@@ -49,7 +49,8 @@ scenarios = load_scenarios()
 m_a = metrics["model_a_penalty_pressure"]
 
 # ── Mode selector ─────────────────────────────────────────────────────────────
-mode_col, _, = st.columns([2, 3])
+
+mode_col, ctx_col = st.columns([1, 2])
 with mode_col:
     mode = st.radio(
         "Narration mode",
@@ -57,9 +58,9 @@ with mode_col:
         format_func={"fan": "⚽ Fan — plain language",
                      "analyst": "📊 Analyst — statistical depth",
                      "referee_trainee": "🟨 Referee trainee — Law-grounded"}.get,
-        horizontal=True,
+        horizontal=False,
     )
-st.markdown(f'<span class="mode-badge">{mode} mode active</span>', unsafe_allow_html=True)
+    st.markdown(f'<span class="mode-badge">{mode} mode active</span>', unsafe_allow_html=True)
 st.markdown("---")
 
 # ── Context selector ──────────────────────────────────────────────────────────

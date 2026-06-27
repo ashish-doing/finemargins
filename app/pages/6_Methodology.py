@@ -157,7 +157,7 @@ with q2:
         template='plotly_dark', plot_bgcolor='#0d0d0d', paper_bgcolor='#0d0d0d',
         height=280, barmode='group', showlegend=True,
         legend=dict(orientation='h', yanchor='bottom', y=1.02, font=dict(size=10)),
-        margin=dict(t=40, b=20),
+        margin=dict(t=60, b=30),
         title=dict(text="Why framing matters", font=dict(size=13)),
     )
     st.plotly_chart(fig_q, use_container_width=True)
@@ -511,10 +511,14 @@ for i, (title, desc) in enumerate(limits):
 # ─── FOOTER ──────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("""
-<div style="color:#555;font-size:0.82rem;text-align:center;padding:1rem">
-  FineMargins methodology · StatsBomb Open Data (StatsBomb Public Data User Agreement) · 
-  IFAB Laws of the Game 2025/26 · IBM Granite via watsonx.ai · IBM Docling 2.103 · 
-  IBM Context Forge MCP 1.0.3 · IBM Bob 1.0.4<br>
-  Built for IBM SkillsBuild AI Builders Challenge, June 2026 — "AI Inside the Match"
+<div style="color:#555;font-size:0.82rem;text-align:center;padding:1rem;line-height:2">
+  <span style="color:#666">FineMargins methodology</span> &nbsp;·&nbsp;
+  <span style="color:#666">StatsBomb Open Data</span> &nbsp;·&nbsp;
+  <span style="color:#666">IFAB Laws of the Game 2025/26</span> &nbsp;·&nbsp;
+  <span style="color:#666">IBM Granite via watsonx.ai</span> &nbsp;·&nbsp;
+  <span style="color:#666">IBM Docling 2.103</span> &nbsp;·&nbsp;
+  <span style="color:#666">IBM Context Forge MCP 1.0.3</span> &nbsp;·&nbsp;
+  <span style="color:#666">IBM Bob 1.0.4</span><br>
+  <span style="color:#444;font-size:0.78rem">Built for IBM SkillsBuild AI Builders Challenge, June 2026 — "AI Inside the Match"</span>
 </div>
 """, unsafe_allow_html=True)

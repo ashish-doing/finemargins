@@ -69,7 +69,7 @@ st.html("""
 .co{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;padding:0 24px;text-align:center;margin-top:20px}
 .ti{font-size:48px;font-weight:700;letter-spacing:-1px;color:#fff;margin:0 0 4px;line-height:1}
 .ti span{color:#0f62fe}
-.su{font-size:13px;color:rgba(255,255,255,.5);margin:12px auto 0;max-width:560px;line-height:1.6;text-align:center}
+.su{font-size:12px;color:rgba(255,255,255,.5);margin:12px auto 0;max-width:900px;line-height:1.6;text-align:center;white-space:nowrap}
 .ba{display:inline-block;margin-bottom:14px;padding:4px 12px;border:1px solid rgba(15,98,254,.45);border-radius:20px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(15,98,254,.9);background:rgba(15,98,254,.08)}
 .bl{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#ccc 60%,#999 100%);box-shadow:0 0 6px rgba(15,98,254,.6);z-index:5;animation:bm 6s cubic-bezier(.4,0,.6,1) infinite}
 @keyframes bm{0%{left:-30px;top:88%;opacity:0}5%{opacity:1}30%{left:38%;top:82%}55%{left:62%;top:80%}85%{left:100%;top:78%;opacity:1}86%{opacity:0}100%{left:100%;top:78%;opacity:0}}
@@ -195,7 +195,6 @@ with how_to_col:
 with btn_col:
     if st.button("How to use ↓", type="primary", use_container_width=True):
         st.session_state["expand_how_to"] = True
-        st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -267,7 +266,9 @@ st.caption("New here? Expand any section below to understand what each page does
 st.page_link("pages/6_Methodology.py", label="Jump to Methodology page →", icon="🔬")
 st.markdown("<br>", unsafe_allow_html=True)
 
-_expand = st.session_state.pop("expand_how_to", False)
+_expand = st.session_state.get("expand_how_to", False)
+if _expand:
+    st.session_state["expand_how_to"] = False
 
 with st.expander("⚡ Pressure Lens", expanded=_expand):
     st.markdown("""
