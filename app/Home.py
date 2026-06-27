@@ -182,19 +182,16 @@ for col, (val, label, sub) in zip([c1,c2,c3,c4,c5,c6], kpis):
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-how_to_col, btn_col = st.columns([6, 1])
-with how_to_col:
-    st.markdown("""
-    <div style="background:#0f2040;border:1px solid #0f62fe55;border-radius:8px;
-                padding:0.7rem 1.4rem;display:flex;align-items:center;gap:10px">
-      <span style="color:#a8c8ff;font-size:0.9rem">
-        📖 <b>New to FineMargins?</b> — Learn what each page does and how to read the outputs.
-      </span>
-    </div>
-    """, unsafe_allow_html=True)
-with btn_col:
-    if st.button("How to use ↓", type="primary", use_container_width=True):
-        st.session_state["expand_how_to"] = True
+st.markdown("""
+<div style="background:#0f2040;border:1px solid #0f62fe55;border-radius:8px;
+            padding:0.9rem 1.4rem;display:flex;align-items:center;justify-content:space-between">
+  <span style="color:#a8c8ff;font-size:0.9rem">
+    📖 <b>New to FineMargins?</b> — Scroll down past the findings to find the
+    <b style="color:#78a9ff">📖 How to use FineMargins</b> guide — each page explained.
+  </span>
+  <span style="color:#0f62fe;font-size:1.2rem;margin-left:1rem">↓</span>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
