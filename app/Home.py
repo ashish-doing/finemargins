@@ -61,9 +61,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Hero ─────────────────────────────────────────────────────────────────────
-import streamlit.components.v1 as components
-
-components.html("""
+st.html("""
 <style>
 .fm{position:relative;width:100%;height:320px;overflow:hidden;background:#0a0a0a;border-radius:10px;font-family:sans-serif;box-sizing:border-box}
 .pb{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 59px,rgba(255,255,255,.03) 59px,rgba(255,255,255,.03) 60px),repeating-linear-gradient(0deg,transparent 0px,transparent 79px,rgba(255,255,255,.03) 79px,rgba(255,255,255,.03) 80px),linear-gradient(160deg,#0e1f0e 0%,#0a150a 40%,#050d05 100%)}
@@ -129,7 +127,7 @@ components.html("""
   <div class="cd" style="bottom:18px;left:18px"></div>
   <div class="cd" style="bottom:18px;right:18px"></div>
 </div>
-""", height=330)
+""")
 
 # ── 2026 World Cup Live Banner ────────────────────────────────────────────────
 from datetime import date

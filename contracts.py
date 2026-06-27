@@ -119,7 +119,7 @@ class NarrationRequest:
 @dataclass
 class NarrationResponse:
     text: str
-    tool_calls_made: list[str]    # names of Context Forge tools Granite actually invoked
+    tool_calls_made: list[str]  # names of tools invoked (direct function calls; Context Forge gateway prototyped locally — see README)
     grounded: bool                  # True only if every number in `text` traces to a tool call
 
 
@@ -134,8 +134,9 @@ REQUIRED_ENV_VARS = [
     "WATSONX_MODEL_ID",     # e.g. ibm/granite-4-h-small — confirm exact id at build time
 ]
 
-# Local-only, no cloud account needed:
-CONTEXT_FORGE_LOCAL_URL = "http://127.0.0.1:4444"   # default mcpgateway port
+# Context Forge MCP gateway URL — prototyped locally, not wired at runtime on HF Spaces deployment.
+# See ibm_layer/tools.py and README for full explanation of the deployment constraint.
+CONTEXT_FORGE_LOCAL_URL = "http://127.0.0.1:4444"   # default mcpgateway port (local dev only)
 
 
 # ---------------------------------------------------------------------------
@@ -143,8 +144,8 @@ CONTEXT_FORGE_LOCAL_URL = "http://127.0.0.1:4444"   # default mcpgateway port
 # ---------------------------------------------------------------------------
 
 PATHS = {
-    "penalty_dataset": "data/processed/penalty_dataset.parquet",
-    "late_shots_dataset": "data/processed/late_shots_dataset.parquet",
+    "penalty_dataset": "data/processed/penalty_shap.parquet",
+    "late_shots_dataset": "data/processed/late_shot_probs.parquet",
     "pressure_model": "pipeline/model_artifacts/pressure_model.json",
     "pressure_metrics": "pipeline/model_artifacts/metrics.json",
     "officiating_scenarios": "ibm_layer/officiating_scenarios.json",
