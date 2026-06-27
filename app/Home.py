@@ -63,20 +63,22 @@ st.markdown("""
 # ── Hero ─────────────────────────────────────────────────────────────────────
 st.html("""
 <style>
-.fm{position:relative;width:100%;height:320px;overflow:hidden;background:#0a0a0a;border-radius:10px;font-family:sans-serif;box-sizing:border-box}
+.fm{position:relative;width:100%;height:340px;overflow:hidden;background:#0a0a0a;border-radius:10px;font-family:sans-serif;box-sizing:border-box}
 .pb{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 59px,rgba(255,255,255,.03) 59px,rgba(255,255,255,.03) 60px),repeating-linear-gradient(0deg,transparent 0px,transparent 79px,rgba(255,255,255,.03) 79px,rgba(255,255,255,.03) 80px),linear-gradient(160deg,#0e1f0e 0%,#0a150a 40%,#050d05 100%)}
 .pl{position:absolute;inset:0}.pl svg{width:100%;height:100%;opacity:.13}
-.co{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;padding:0 24px;text-align:center;margin-top:-30px}
-.su{margin-top:28px!important}
+.co{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;padding:0 24px;text-align:center;margin-top:20px}
 .ti{font-size:48px;font-weight:700;letter-spacing:-1px;color:#fff;margin:0 0 4px;line-height:1}
 .ti span{color:#0f62fe}
-.su{font-size:15px;color:rgba(255,255,255,.55);margin:10px 0 0;max-width:420px;line-height:1.5}
+.su{font-size:13px;color:rgba(255,255,255,.5);margin:12px auto 0;max-width:560px;line-height:1.6;text-align:center}
 .ba{display:inline-block;margin-bottom:14px;padding:4px 12px;border:1px solid rgba(15,98,254,.45);border-radius:20px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(15,98,254,.9);background:rgba(15,98,254,.08)}
-.bl{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#ccc 60%,#999 100%);box-shadow:0 0 6px rgba(15,98,254,.6);z-index:5;animation:bm 6s cubic-bezier(.4,0,.6,1) infinite;top:54%}
-@keyframes bm{0%{left:-30px;top:72%;opacity:0}5%{opacity:1}30%{left:38%;top:66%}55%{left:62%;top:62%}85%{left:100%;top:58%;opacity:1}86%{opacity:0}100%{left:100%;top:58%;opacity:0}}
+.bl{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#ccc 60%,#999 100%);box-shadow:0 0 6px rgba(15,98,254,.6);z-index:5;animation:bm 6s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes bm{0%{left:-30px;top:88%;opacity:0}5%{opacity:1}30%{left:38%;top:82%}55%{left:62%;top:80%}85%{left:100%;top:78%;opacity:1}86%{opacity:0}100%{left:100%;top:78%;opacity:0}}
 .pa{position:absolute;z-index:4;opacity:.45}
-.pl2{left:26%;top:55%;animation:pla 6s ease-in-out infinite}
-.pr{left:66%;top:48%;animation:plb 6s ease-in-out infinite}
+.pl2{left:26%;top:68%;animation:pla 6s ease-in-out infinite}
+.pr{left:66%;top:62%;animation:plb 6s ease-in-out infinite}
+.gp{position:absolute;z-index:3;opacity:.35}
+.gp-l{left:0;top:30%;height:40%;width:28px;border-right:2px solid white;border-top:2px solid white;border-bottom:2px solid white}
+.gp-r{right:0;top:30%;height:40%;width:28px;border-left:2px solid white;border-top:2px solid white;border-bottom:2px solid white}
 @keyframes pla{0%,100%{transform:translateX(0)}30%{transform:translateX(12px)}60%{transform:translateX(-4px)}}
 @keyframes plb{0%,100%{transform:translateX(0) scaleX(-1)}30%{transform:translateX(-8px) scaleX(-1)}60%{transform:translateX(6px) scaleX(-1)}}
 .sc{position:absolute;top:0;left:-100%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(15,98,254,.04),transparent);animation:sc 8s linear infinite;z-index:2}
@@ -102,6 +104,8 @@ st.html("""
     </svg>
   </div>
   <div class="sc"></div>
+  <div class="gp gp-l"></div>
+  <div class="gp gp-r"></div>
   <div class="pa pl2">
     <svg width="22" height="42" viewBox="0 0 22 42" xmlns="http://www.w3.org/2000/svg" fill="rgba(255,255,255,0.8)">
       <circle cx="11" cy="6" r="5"/>
@@ -120,7 +124,7 @@ st.html("""
   <div class="co">
     <div class="ba">World Cup · Pressure Intelligence</div>
     <div class="ti">Fine<span>Margins</span></div>
-    <div class="su" style="margin-top:36px;font-size:13px;white-space:nowrap;letter-spacing:0.02em;opacity:0.5">Quantifying the pressure that decides knockout football — powered by StatsBomb open data and IBM Granite.</div>
+    <div class="su">Quantifying the pressure that decides knockout football — powered by StatsBomb open data and IBM Granite.</div>
   </div>
   <div class="cd" style="top:18px;left:18px"></div>
   <div class="cd" style="top:18px;right:18px"></div>
@@ -159,7 +163,7 @@ metrics = load_metrics()
 m_a = metrics["model_a_penalty_pressure"]
 m_b = metrics["model_b_late_shot_residual"]
 
-c1, c2, c3, c4, c5, c6 = st.columns(6)
+c1, c2, c3, c4, c5, c6 = st.columns([1, 1, 1, 1, 1, 1])
 kpis = [
     ("192", "Matches analysed", "2018 WC · 2022 WC · WWC 2023"),
     (f"{len(pen)}", "Penalty kicks", "In-game + shootout"),
@@ -190,7 +194,8 @@ with how_to_col:
     """, unsafe_allow_html=True)
 with btn_col:
     if st.button("How to use ↓", type="primary", use_container_width=True):
-        st.session_state["show_how_to"] = True
+        st.session_state["expand_how_to"] = True
+        st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -257,13 +262,14 @@ with right:
 # ── User Guide ────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("### 📖 How to use FineMargins")
-if st.session_state.get("show_how_to"):
-    st.session_state["show_how_to"] = False  # reset after scroll lands here
+
 st.caption("New here? Expand any section below to understand what each page does and how to read its outputs. Or jump directly to the Methodology page using the button below.")
 st.page_link("pages/6_Methodology.py", label="Jump to Methodology page →", icon="🔬")
 st.markdown("<br>", unsafe_allow_html=True)
 
-with st.expander("⚡ Pressure Lens"):
+_expand = st.session_state.pop("expand_how_to", False)
+
+with st.expander("⚡ Pressure Lens", expanded=_expand):
     st.markdown("""
 **Two tabs: Penalty Pressure and Late-Game Shots.**
 
@@ -306,7 +312,7 @@ shows.
 
 with st.expander("🟨 Officiating Lens"):
     st.markdown("""
-**Five real scenarios** drawn from major tournament incidents, each one a case where the
+**Six real scenarios** drawn from major tournament incidents (five from Qatar 2022 and one from the live 2026 WC), each one a case where the
 officiating decision was either overturned by VAR, disputed at the time, or cited in
 post-match analysis as a fine-margin call.
 
