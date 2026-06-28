@@ -158,14 +158,15 @@ footer a:hover{color:var(--text)}
 .footer-copy{color:var(--dim);font-size:.72rem}
 
 /* ── LOADER ── */
-#loader{position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s}
+#loader{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:4rem;transition:opacity 1s;overflow:hidden}
 #loader.hidden{opacity:0;pointer-events:none}
-.loader-ball{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#ccc 60%,#888);animation:lspin 1s linear infinite,lfloat 2s ease-in-out infinite;margin-bottom:2rem}
-@keyframes lspin{to{transform:rotate(360deg)}}
-@keyframes lfloat{0%,100%{transform:rotate(0) translateY(0)}50%{transform:rotate(180deg) translateY(-10px)}}
-.loader-text{color:var(--muted);font-size:.82rem;letter-spacing:.12em;margin-bottom:1rem}
-.loader-bar{width:180px;height:1px;background:var(--border2);border-radius:1px;overflow:hidden}
-.loader-fill{height:100%;background:var(--blue);animation:lfill 1.4s ease-out forwards}
+.loader-bg{position:absolute;inset:0;background:url('screenshots/loader-bg.png') center/cover no-repeat;filter:brightness(.25) saturate(.6)}
+.loader-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.loader-title{font-size:3rem;font-weight:700;letter-spacing:-2px;color:#fff}
+.loader-title span{color:#0f62fe}
+.loader-sub{font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
+.loader-bar{width:220px;height:1px;background:rgba(255,255,255,.1);border-radius:1px;overflow:hidden}
+.loader-fill{height:100%;background:linear-gradient(90deg,#0f62fe,#4589ff);animation:lfill 2s ease-out forwards}
 @keyframes lfill{0%{width:0}100%{width:100%}}
 
 /* ── RESPONSIVE ── */
@@ -186,9 +187,12 @@ footer a:hover{color:var(--text)}
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-ball"></div>
-  <div class="loader-text">// loading pressure data</div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <div class="loader-bg"></div>
+  <div class="loader-content">
+    <div class="loader-title">Fine<span>Margins</span></div>
+    <div class="loader-sub">World Cup · Pressure Intelligence</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -581,7 +585,7 @@ footer a:hover{color:var(--text)}
 
 <script>
 window.addEventListener('load', () => {
-  setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1400);
+  setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 2500);
 });
 
 const observer = new IntersectionObserver((entries) => {
