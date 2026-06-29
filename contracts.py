@@ -146,7 +146,7 @@ CONTEXT_FORGE_LOCAL_URL = "http://127.0.0.1:4444"   # default mcpgateway port (l
 PATHS = {
     "penalty_dataset": "data/processed/penalty_shap.parquet",
     "late_shots_dataset": "data/processed/late_shot_probs.parquet",
-    "pressure_model": "pipeline/model_artifacts/pressure_model.json",
+    "pressure_model": "pipeline/model_artifacts/models.pkl",
     "pressure_metrics": "pipeline/model_artifacts/metrics.json",
     "officiating_scenarios": "ibm_layer/officiating_scenarios.json",
     "law_chunks": "ibm_layer/law_chunks.json",      # Docling output, chunked IFAB text

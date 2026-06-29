@@ -47,6 +47,7 @@ if not CREDS_PRESENT:
 metrics = load_metrics()
 scenarios = load_scenarios()
 m_a = metrics["model_a_penalty_pressure"]
+SCEN_BY_ID = {s["scenario_id"]: s for s in scenarios}
 
 # ── Mode selector ─────────────────────────────────────────────────────────────
 
@@ -68,13 +69,10 @@ context_type = st.selectbox(
     "What should Granite explain?",
     ["Pressure data — shootout vs in-game penalties",
      "Late-game shot residual findings",
-     "VAR incident: Japan vs Spain goal-line call",
-     "VAR incident: Dembele penalty in the 2022 Final",
-     "2026 WC: SAOT outage — what happens without the tech?",
      "Counter-intuitive finding: sudden-death kicks convert higher",
      "Tournament comparison: 2018 WC vs 2022 WC vs WWC 2023"]
+    + [f"VAR incident: {s['title']}" for s in scenarios]
 )
-
 PREBUILT_CONTEXTS = {
     "Pressure data — shootout vs in-game penalties": {
         "type": "pressure",
@@ -106,22 +104,7 @@ PREBUILT_CONTEXTS = {
         },
         "default_q": "Why does the pressure model not improve on the xG baseline, and what does the residual tell us?"
     },
-    "VAR incident: Japan vs Spain goal-line call": {
-        "type": "officiating",
-        "data": scenarios[0] if scenarios else {},
-        "default_q": "Explain what Law 9 says and why this was such a difficult call for VAR officials."
-    },
-    "VAR incident: Dembele penalty in the 2022 Final": {
-        "type": "officiating",
-        "data": scenarios[1] if len(scenarios) > 1 else {},
-        "default_q": "What does the VAR protocol say about overturning on-field penalty decisions?"
-    },
-
-    "2026 WC: SAOT outage — what happens without the tech?": {
-        "type": "officiating",
-        "data": next((s for s in scenarios if "2026" in s.get("tournament", "")), scenarios[-1] if scenarios else {}),
-        "default_q": "What are the officiating implications when SAOT is unavailable — does the standard of proof change for offside decisions?"
-    },
+    
     "Counter-intuitive finding: sudden-death kicks convert higher": {
         "type": "pressure",
         "data": {
@@ -154,6 +137,19 @@ PREBUILT_CONTEXTS = {
     },
 }
 
+OFFICIATING_DEFAULT_Q = {
+    "discipline": "What does Law 12 say about provocative or inflammatory acts, and why didn't VAR review this?",
+    "shootout": "What does Law 14 say about goalkeeper conduct during a penalty kick, and how does it apply to gamesmanship in a shootout?",
+    "offside": "Explain what Law 11 says about offside position vs. offside offence, and why this call was so close.",
+    "penalty": "What are the officiating implications when SAOT is unavailable for a penalty decision?",
+}
+for sid, s in SCEN_BY_ID.items():
+    PREBUILT_CONTEXTS[f"VAR incident: {s['title']}"] = {
+        "type": "officiating",
+        "data": s,
+        "default_q": OFFICIATING_DEFAULT_Q.get(s["category"], "Explain the relevant Law and what this incident shows about VAR's limits.")
+    }
+
 ctx = PREBUILT_CONTEXTS[context_type]
 question = st.text_area("Your question to Granite", value=ctx["default_q"], height=80)
 
@@ -179,17 +175,17 @@ The SHAP decomposition identifies is_shootout as the strongest single depressor 
 
 Recommended caveat for stakeholder reporting: n=202 across three tournaments supports directional claims, not precise probability estimates for individual players.
 """,
-    ("referee_trainee", "VAR incident: Japan vs Spain goal-line call"): """
-Law 9 is precise: the ball is out of play only when it has wholly crossed the goal line or touch line. 'Wholly' is the operative word — any part of the ball remaining over the line means it is still in play, regardless of how it looks from most camera angles.
+    ("referee_trainee", "VAR incident: Opening Match SAOT Offside — Valencia Disallowed in Minute 3"): """
+Law 11 is precise: a player is offside only if a non-arm body part is nearer the opponents' goal line than both the ball and the second-last defender at the moment the ball is played — and merely being in that position isn't an offence until the player becomes actively involved in play.
 
-The Japan-Spain incident is a textbook example of why VAR uses a dedicated frame and camera angle that may differ from the broadcast feed. The ball's position was judged using the camera that provided the best perpendicular view of the line, at the highest available frame rate. What viewers saw on broadcast was a different angle that appeared to show the ball fully out.
+This incident is the textbook case for why Semi-Automated Offside Technology exists. Estrada's offside was a fraction of a body part, one phase before the goal — invisible to the on-field assistant referee and to standard broadcast replay. Only SAOT's 12-camera, 29-skeletal-point tracking caught it. Without that system, this almost certainly stands as a legal, fastest-ever World Cup goal.
 
-This is not a failure of VAR — it's exactly the scenario VAR exists for: a decision that cannot be made reliably with the human eye in real time, resolved by the best available technology. The key principle for trainees: trust the process (the angle, the frame, the line standard) not the intuition, and communicate the reason for the decision clearly.
+This is not a failure of human officiating — it's exactly the precision gap VAR/SAOT was built to close. The key principle for trainees: the Law's threshold is objective and millimetre-exact; the technology exists because the human eye, even an expert one, structurally cannot resolve it at this resolution in real time.
 
-What you cannot know as an official: whether the camera's frame rate was high enough to capture the precise moment of maximum ball travel, or whether any occlusion by a player's boot introduced measurement uncertainty. Both are genuine epistemic limits, not procedural failures.
+What you cannot know as an official: the underlying skeletal tracking data itself, or whether this level of precision reflects the spirit of Law 11 as much as its literal text.
 """,
 
-    ("fan", "2026 WC: SAOT outage — what happens without the tech?"): """
+    ("fan", "VAR incident: Qatar vs Switzerland — Penalty Awarded Despite Apparent Offside, SAOT Outage"): """
 In the 2026 World Cup opener, Switzerland got a penalty that replays suggested might have been offside — but VAR didn't overturn it, and there was no animation shown to fans. Hours later, FIFA said the system that draws those 3D offside graphics had a brief outage.
 
 Here's what that means: normally, Semi-Automated Offside Technology (SAOT) uses 12 cameras and tracks 29 points on each player's skeleton to calculate offside to the millimetre. When that's unavailable, the VAR officials have to use the old manual method — and the bar they set themselves is deliberately higher: only overturning something if it's "clear and obvious," not borderline.
@@ -244,7 +240,17 @@ if st.button("🤖 Ask Granite", type="primary"):
                     "mode": mode, "q": question, "a": response, "live": False
                 })
     else:
-        response = DEMO_RESPONSES.get(demo_key, "Demo response not available for this combination. Connect watsonx.ai to see live narration.")
+        response = DEMO_RESPONSES.get(demo_key)
+        if response is None:
+            if ctx["type"] == "officiating":
+                law = ctx["data"].get("relevant_law", {})
+                response = (
+                    f"**Demo mode — generic narration.** Law {law.get('law_number','?')} "
+                    f"({law.get('law_title','')}) is the relevant provision here: "
+                    f"{law.get('excerpt','See law text.')} Connect watsonx.ai for full live Granite narration."
+                )
+            else:
+                response = "Demo response not available for this combination. Connect watsonx.ai to see live narration."
         st.session_state.setdefault("history", []).append({
             "mode": mode, "q": question, "a": response, "live": False
         })

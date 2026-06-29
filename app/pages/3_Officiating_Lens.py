@@ -9,6 +9,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from app.data_loader import load_scenarios
 
+def _load_law_chunks():
+    path = Path(__file__).parent.parent.parent / "ibm_layer" / "law_chunks.json"
+    with open(path, "r", encoding="utf-8") as f:
+        chunks = json.load(f)
+    return {c["law_number"]: c["summary"] for c in chunks}
+
+LAW_TEXT = _load_law_chunks()
+
+def get_law_text(law_number, fallback_excerpt):
+    return LAW_TEXT.get(law_number, fallback_excerpt)
+
 st.set_page_config(page_title="Officiating Lens — FineMargins", page_icon="🟨", layout="wide")
 
 st.markdown("""
@@ -106,10 +117,11 @@ lc, rc = st.columns(2)
 
 with lc:
     law = scenario['relevant_law']
+    law_text = get_law_text(law['law_number'], law['excerpt'])
     st.markdown(f"""
     <div class="law-box">
       <b>⚖️ Law {law['law_number']}: {law['law_title']}</b><br>
-      <span style="color:#a8a8a8">{law['excerpt']}</span><br>
+      <span style="color:#a8a8a8">{law_text}</span><br>
       <span style="font-size:0.75rem;color:#666">Source: 2025/26 IFAB Laws of the Game, p.{law['source_page']}</span>
     </div>
     """, unsafe_allow_html=True)

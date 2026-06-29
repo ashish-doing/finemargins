@@ -1,8 +1,10 @@
 """
 ibm_layer/granite_client.py
 
-VERIFIED: ibm-watsonx-ai==1.5.13 imports cleanly and exposes exactly the
-constructor signatures used below (checked directly against the
+VERIFIED: ibm-watsonx-ai==1.3.42 (pinned in requirements.txt for HF
+Spaces' Python 3.10 runtime — 1.5.13 requires Python 3.11+ and is NOT
+compatible with this deployment) imports cleanly and exposes exactly
+the constructor signatures used below (checked directly against the
 installed package, not assumed from memory).
 
 NOT YET VERIFIED: an actual live call to watsonx.ai. That requires a

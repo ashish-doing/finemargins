@@ -9,6 +9,14 @@ import plotly.express as px
 import sys
 from pathlib import Path
 from sklearn.linear_model import LogisticRegression
+
+@st.cache_resource
+def get_pressure_model(_pen):
+    feat_a = ['is_shootout', 'is_sudden_death', 'is_knockout', 'stage_weight']
+    X_a = _pen[feat_a].values
+    y_a = _pen['is_goal'].values
+    model = LogisticRegression(max_iter=1000).fit(X_a, y_a)
+    return model, feat_a
 import shap as shap_lib
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -113,10 +121,7 @@ with lc:
         st.info("No kicks in dataset after current filter.")
     else:
         pk = player_kicks.copy()
-        feat_a = ['is_shootout', 'is_sudden_death', 'is_knockout', 'stage_weight']
-        X_all = pen[feat_a].values
-        y_all = pen['is_goal'].values
-        model = LogisticRegression(max_iter=1000).fit(X_all, y_all)
+        model, feat_a = get_pressure_model(pen)
         probs = model.predict_proba(pk[feat_a].values)[:, 1]
         pk['predicted_prob'] = probs
 
@@ -253,11 +258,12 @@ st.plotly_chart(fig_cmp, use_container_width=True)
 hh_cols = st.columns(2)
 for col, (name, row) in zip(hh_cols, [(p1, r1), (p2, r2)]):
     with col:
+        so_pct = f"{row.shootout_goals/row.shootout_n:.0%}" if row.shootout_n > 0 else "N/A"
         st.markdown(f"""
         <div class="finding-box">
         <b>{name.split()[0] if len(name.split())>0 else name}</b><br>
         Total: {int(row.total_penalties)} · Conv: {row.conversion_rate:.1%}<br>
         Shootout: {int(row.shootout_n)} kicks, {int(row.shootout_goals)} goals
-        ({row.shootout_goals/row.shootout_n:.0%} if row.shootout_n > 0 else 'N/A')<br>
+        ({so_pct})<br>
         In-game: {int(row.ingame_n)} kicks, {int(row.ingame_goals)} goals
         </div>""", unsafe_allow_html=True)

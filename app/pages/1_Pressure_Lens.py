@@ -11,6 +11,15 @@ import plotly.express as px
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from app.data_loader import load_penalties, load_late_shots, load_metrics
+from sklearn.linear_model import LogisticRegression
+
+@st.cache_resource
+def get_pressure_model(_pen):
+    feat_a = ['is_shootout', 'is_sudden_death', 'is_knockout', 'stage_weight']
+    X_a = _pen[feat_a].values
+    y_a = _pen['is_goal'].values
+    model = LogisticRegression(max_iter=1000).fit(X_a, y_a)
+    return model, feat_a
 
 st.set_page_config(page_title="Pressure Lens — FineMargins", page_icon="⚡", layout="wide")
 
@@ -189,11 +198,8 @@ at the individual level.
     selected = st.selectbox("Choose a moment:", list(landmarks.keys()))
     moment = landmarks[selected]
 
-    from sklearn.linear_model import LogisticRegression
-    feat_a = ['is_shootout', 'is_sudden_death', 'is_knockout', 'stage_weight']
+    m, feat_a = get_pressure_model(pen)
     X_a = pen[feat_a].values
-    y_a = pen['is_goal'].values
-    m = LogisticRegression(max_iter=1000).fit(X_a, y_a)
     import shap as shap_lib
     explainer = shap_lib.LinearExplainer(m, X_a, max_samples=X_a.shape[0])
 
