@@ -143,38 +143,19 @@ No scraping. No third-party APIs. All data fetched from public StatsBomb GitHub 
 
 ## Architecture
 
+```mermaid
+flowchart LR
+    A["INPUT\nStatsBomb Open Data\n192 matches, 12-worker fetch"] --> B["1 · Engineer\npipeline/features.py\nstage_weight, is_sudden_death"]
+    B --> C["2 · Model A\nLogistic Regression\nn=202 penalties\nAUC 0.518"]
+    B --> D["2 · Model B\nLogistic Regression + xG\nn=1,228 shots\nAUC 0.773"]
+    C --> E["3 · Parse\nIBM Docling 2.103\nIFAB Laws → law_chunks.json"]
+    D --> E
+    E --> F["4 · Ground\nIBM Context Forge MCP\nget_pressure_profile · get_law_text"]
+    F --> G["5 · Narrate\nIBM Granite (watsonx.ai)\nfan · analyst · referee_trainee"]
+    G --> H["Streamlit · 7 pages\nDocker on HF Spaces"]
 ```
-StatsBomb Open Data (JSON, concurrent fetch — 12 workers)
-        │
-        ▼
-pipeline/features.py           ← pressure index engineering
-        │                         stage_weight, is_sudden_death, xg_residual
-        ├── Model A: Logistic Regression (n=202 penalties, 4 features)
-        │          SHAP LinearExplainer — exact attribution per kick
-        │          AUC 0.518 — correct finding, reported honestly
-        │
-        └── Model B: Logistic Regression + xG baseline (n=1,228 shots)
-                   Residual = actual outcome − StatsBomb xG
-                   AUC 0.773 — pressure shifts volume, not individual outcomes
-                        │
-                        ▼
-              IBM Docling 2.103
-              IFAB Laws of the Game PDF → law_chunks.json
-                        │
-                        ▼
-              IBM Context Forge MCP 1.0.3
-              tools: get_pressure_profile · get_law_text · get_overturn_rate
-              (raises ToolDataError if data absent — no hallucination path)
-                        │
-                        ▼
-              IBM Granite via watsonx.ai (ibm/granite-4-h-small)
-              System prompts: fan | analyst | referee_trainee
-                        │
-                        ▼
-              Streamlit app — 7 pages, Docker on HF Spaces
-              Home · Pressure Lens · Player Profile · Officiating Lens
-              Granite Chat · Tournament Intel · Methodology
-```
+
+See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for full system diagrams, sequence flows, and component breakdown.
 
 ---
 
@@ -333,4 +314,12 @@ Laws of the Game content is derived from the [IFAB Laws of the Game 2025/26](htt
 
 ---
 
-*Built for the IBM SkillsBuild AI Builders Challenge, June 2026 — "AI Inside the Match"*
+<div align="center">
+
+Built for the **IBM SkillsBuild AI Builders Challenge — June 2026 — "AI Inside the Match"**
+
+*Powered by IBM Granite · IBM Docling · IBM Context Forge MCP · IBM Bob · StatsBomb Open Data*
+
+*Football is decided by fine margins. Now you can measure them.*
+
+</div>
