@@ -27,7 +27,7 @@
 <p align="center">
   🌐 <a href="https://ashish-doing.github.io/finemargins">Landing Page</a> &nbsp;•&nbsp;
   🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App</a> &nbsp;•&nbsp;
-  🔬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins/blob/main/app/pages/6_Methodology.py">Methodology</a> &nbsp;•&nbsp;
+  🔬 <a href="https://ashish-doing-finemargins.hf.space/Methodology">Methodology</a> &nbsp;•&nbsp;
   🟨 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Officiating Lens</a> &nbsp;•&nbsp;
   💬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Ask Granite</a>
 </p>
@@ -191,7 +191,7 @@ pip install -r requirements.txt
 
 # 3. IBM credentials (free Lite account at cloud.ibm.com)
 export WATSONX_API_KEY=your_key_here
-export WATSONX_PROJECT_ID=a4187848-e67a-4599-84cb-fb93d360ff95
+export WATSONX_PROJECT_ID=your_project_id_here
 export WATSONX_URL=https://us-south.ml.cloud.ibm.com
 export WATSONX_MODEL_ID=ibm/granite-4-h-small
 
@@ -310,7 +310,7 @@ MIT — see [LICENSE](LICENSE) for details.
 
 Data: [StatsBomb Open Data](https://github.com/statsbomb/open-data) is used under the StatsBomb Public Data User Agreement and is not covered by this MIT License.
 
-Laws of the Game content is derived from the [IFAB Laws of the Game 2025/26](https://www.theifab.com/laws-of-the-game/) — paraphrased, not reproduced verbatim.
+Laws of the Game content is derived from the [IFAB Laws of the Game 2025/26](https://www.theifab.com) — paraphrased, not reproduced verbatim.
 
 ---
 
