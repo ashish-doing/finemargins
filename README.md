@@ -24,11 +24,20 @@
 </p>
 
 <p align="center">
-  🌐 <a href="https://ashish-doing.github.io/finemargins">Landing Page</a> &nbsp;•&nbsp;
-  🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App</a> &nbsp;•&nbsp;
-  🔬 <a href="https://ashish-doing-finemargins.hf.space/Methodology">Methodology</a> &nbsp;•&nbsp;
-  🟨 <a href="https://ashish-doing-finemargins.hf.space/Officiating_Lens">Officiating Lens</a> &nbsp;•&nbsp;
-  💬 <a href="https://ashish-doing-finemargins.hf.space/Granite_Chat">Ask Granite</a>
+  <a href="https://huggingface.co/spaces/ashish-doing/finemargins"><img src="https://img.shields.io/badge/🚀%20LIVE%20APP-HuggingFace%20Spaces-FF9D00?style=for-the-badge" /></a>
+  <a href="https://ashish-doing.github.io/finemargins"><img src="https://img.shields.io/badge/🌐%20LANDING%20PAGE-VISIT-0f62fe?style=for-the-badge" /></a>
+  <a href="./ARCHITECTURE.md"><img src="https://img.shields.io/badge/📐%20ARCHITECTURE-DEEP%20DIVE-8a3ffc?style=for-the-badge" /></a>
+  <a href="https://youtu.be/IQ9jKQ1MhUw"><img src="https://img.shields.io/badge/▶️%20DEMO%20VIDEO-YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white" /></a>
+</p>
+
+<p align="center">
+  <a href="https://huggingface.co/spaces/ashish-doing/finemargins"><img src="https://img.shields.io/badge/🏠-Home-1a1a1a?style=flat-square" /></a>
+  <a href="https://ashish-doing-finemargins.hf.space/Pressure_Lens"><img src="https://img.shields.io/badge/⚡-Pressure%20Lens-1a1a1a?style=flat-square" /></a>
+  <a href="https://ashish-doing-finemargins.hf.space/Player_Profile"><img src="https://img.shields.io/badge/👤-Player%20Profile-1a1a1a?style=flat-square" /></a>
+  <a href="https://ashish-doing-finemargins.hf.space/Officiating_Lens"><img src="https://img.shields.io/badge/🟨-Officiating%20Lens-1a1a1a?style=flat-square" /></a>
+  <a href="https://ashish-doing-finemargins.hf.space/Granite_Chat"><img src="https://img.shields.io/badge/💬-Granite%20Chat-1a1a1a?style=flat-square" /></a>
+  <a href="https://ashish-doing-finemargins.hf.space/Tournament_Intel"><img src="https://img.shields.io/badge/📊-Tournament%20Intel-1a1a1a?style=flat-square" /></a>
+  <a href="https://ashish-doing-finemargins.hf.space/Methodology"><img src="https://img.shields.io/badge/🔬-Methodology-1a1a1a?style=flat-square" /></a>
 </p>
 
 ---
