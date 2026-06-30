@@ -249,6 +249,17 @@ if st.button("🤖 Ask Granite", type="primary"):
                     f"({law.get('law_title','')}) is the relevant provision here: "
                     f"{law.get('excerpt','See law text.')} Connect watsonx.ai for full live Granite narration."
                 )
+            elif ctx["type"] in ("pressure", "residual", "tournament"):
+                d = ctx["data"]
+                numbers = ", ".join(
+                    f"{k.replace('_',' ')}: {v}" for k, v in d.items()
+                    if isinstance(v, (int, float, str)) and not isinstance(v, bool)
+                )
+                response = (
+                    f"**Demo mode — generic narration ({mode} voice not pre-scripted for this context).** "
+                    f"Grounded figures available: {numbers}. "
+                    f"Connect watsonx.ai for full live Granite narration in this exact voice."
+                )
             else:
                 response = "Demo response not available for this combination. Connect watsonx.ai to see live narration."
         st.session_state.setdefault("history", []).append({
