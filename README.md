@@ -6,18 +6,17 @@
 </div>
 
 <p align="center">
-  <a href="https://watsonx.ai"><img src="https://img.shields.io/badge/IBM-Granite%20AI%20(watsonx.ai)-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
-  <a href="https://github.com/DS4SD/docling"><img src="https://img.shields.io/badge/IBM-Docling%202.103-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
-  <a href="https://ibm.github.io/mcp-context-forge/"><img src="https://img.shields.io/badge/IBM-Context%20Forge%20MCP%201.0.3-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/IBM-Bob%201.0.4-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
-</p>
-
-<p align="center">
   <a href="https://github.com/statsbomb/open-data"><img src="https://img.shields.io/badge/Data-StatsBomb%20Open%20Data-00539a?style=for-the-badge" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Matches-192%20World%20Cup-42be65?style=for-the-badge" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Tests-18%20passing-brightgreen?style=for-the-badge&logo=pytest" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white" /></a>
-  
+</p>
+
+<p align="center">
+  <a href="https://watsonx.ai"><img src="https://img.shields.io/badge/IBM-Granite%20AI%20(watsonx.ai)-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
+  <a href="https://github.com/DS4SD/docling"><img src="https://img.shields.io/badge/IBM-Docling%202.103-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
+  <a href="https://ibm.github.io/mcp-context-forge/"><img src="https://img.shields.io/badge/IBM-Context%20Forge%20MCP%201.0.3-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/IBM-Bob%201.0.4-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" /></a>
 </p>
 
 <p align="center">
