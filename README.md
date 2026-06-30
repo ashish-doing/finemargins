@@ -57,9 +57,10 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 
 [![FineMargins Live App](https://img.shields.io/badge/▶%20Try%20Live%20App-HuggingFace%20Spaces-FF9D00?style=for-the-badge)](https://huggingface.co/spaces/ashish-doing/finemargins)
 
-[![Watch the demo video](docs/images/demo_thumbnail.png)](https://youtu.be/IQ9jKQ1MhUw)
+[![FineMargins Demo](https://img.youtube.com/vi/IQ9jKQ1MhUw/maxresdefault.jpg)](https://youtu.be/IQ9jKQ1MhUw)
+▶️ [Watch the 4-minute demo on YouTube](https://youtu.be/IQ9jKQ1MhUw) 
 
-▶️ [Watch the 4-minute demo on YouTube](https://youtu.be/IQ9jKQ1MhUw) · Live app is fully functional — open it and navigate all 7 pages from the sidebar.
+· Live app is fully functional — open it and navigate all 7 pages from the sidebar.
 ## Screenshots
 
 | | |
