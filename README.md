@@ -27,8 +27,8 @@
   🌐 <a href="https://ashish-doing.github.io/finemargins">Landing Page</a> &nbsp;•&nbsp;
   🚀 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Live App</a> &nbsp;•&nbsp;
   🔬 <a href="https://ashish-doing-finemargins.hf.space/Methodology">Methodology</a> &nbsp;•&nbsp;
-  🟨 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Officiating Lens</a> &nbsp;•&nbsp;
-  💬 <a href="https://huggingface.co/spaces/ashish-doing/finemargins">Ask Granite</a>
+  🟨 <a href="https://ashish-doing-finemargins.hf.space/Officiating_Lens">Officiating Lens</a> &nbsp;•&nbsp;
+  💬 <a href="https://ashish-doing-finemargins.hf.space/Granite_Chat">Ask Granite</a>
 </p>
 
 ---
