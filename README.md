@@ -1,7 +1,7 @@
 ﻿
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Syne&weight=800&size=26&duration=3000&pause=1000&color=00b386&center=true&vCenter=true&width=1100&lines=FineMargins+%E2%80%94+World+Cup+Pressure+Intelligence;192+real+matches+%C2%B7+202+penalties+%C2%B7+1%2C228+late-game+shots;IBM+Granite+%C2%B7+Docling+%C2%B7+Context+Forge+MCP+%C2%B7+IBM+Bob;AI+Inside+the+Match+%E2%80%94+IBM+SkillsBuild+June+2026" alt="FineMargins" />
+<img src="https://readme-typing-svg.demolab.com?font=Syne&weight=800&size=26&duration=3000&pause=1000&color=4589FF&center=true&vCenter=true&width=1100&lines=FineMargins+%E2%80%94+World+Cup+Pressure+Intelligence;192+real+matches+%C2%B7+202+penalties+%C2%B7+1%2C228+late-game+shots;IBM+Granite+%C2%B7+Docling+%C2%B7+Context+Forge+MCP+%C2%B7+IBM+Bob;AI+Inside+the+Match+%E2%80%94+IBM+SkillsBuild+June+2026" alt="FineMargins" />
 
 </div>
 
