@@ -1,4 +1,4 @@
----
+﻿---
 title: FineMargins
 emoji: ⚽
 colorFrom: blue
@@ -68,6 +68,16 @@ Three audience modes (fan · analyst · referee trainee) grounded via IBM Contex
 
 > 📹 Demo video coming before submission deadline. Live app is fully functional — open it and navigate all 7 pages from the sidebar.
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Home — KPIs, findings, explore lenses](https://raw.githubusercontent.com/ashish-doing/finemargins/main/docs/screenshots/screenshot-home.png) | ![Pressure Lens — SHAP attribution + conversion by context](https://raw.githubusercontent.com/ashish-doing/finemargins/main/docs/screenshots/screenshot-pressure.png) |
+| *Home — live KPIs, key findings, 7-page navigation* | *Pressure Lens — SHAP feature importance + conversion by pressure context* |
+| ![Officiating Lens — 6 VAR incidents + LIVE 2026](https://raw.githubusercontent.com/ashish-doing/finemargins/main/docs/screenshots/screenshot-officiating.png) | ![Granite Chat — live IBM Granite response](https://raw.githubusercontent.com/ashish-doing/finemargins/main/docs/screenshots/screenshot-granite.png) |
+| *Officiating Lens — 6 real VAR incidents, Law citations, 🔴 LIVE 2026 badge* | *Granite Chat — 🟢 Live IBM Granite narrating grounded pressure data* |
+| ![Tournament Intel — CRM dashboard](https://raw.githubusercontent.com/ashish-doing/finemargins/main/docs/screenshots/screenshot-tournament.png) | ![Methodology — 9-section pipeline explanation](https://raw.githubusercontent.com/ashish-doing/finemargins/main/docs/screenshots/screenshot-methodology.png) |
+| *Tournament Intel — cross-tournament CRM dashboard, player leaderboard, CSV export* | *Methodology — 9 sections explaining every pipeline design decision* |
 
 ---
 
