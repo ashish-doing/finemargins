@@ -1,13 +1,4 @@
-﻿---
-title: FineMargins
-emoji: ⚽
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_file: app/Home.py
-pinned: false
----
-
+﻿
 <div align="center">
 
 <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=800&size=26&duration=3000&pause=1000&color=00b386&center=true&vCenter=true&width=1100&lines=FineMargins+%E2%80%94+World+Cup+Pressure+Intelligence;192+real+matches+%C2%B7+202+penalties+%C2%B7+1%2C228+late-game+shots;IBM+Granite+%C2%B7+Docling+%C2%B7+Context+Forge+MCP+%C2%B7+IBM+Bob;AI+Inside+the+Match+%E2%80%94+IBM+SkillsBuild+June+2026" alt="FineMargins" />
@@ -332,5 +323,14 @@ finemargins/
 
 ---
 
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
+
+Data: [StatsBomb Open Data](https://github.com/statsbomb/open-data) is used under the StatsBomb Public Data User Agreement and is not covered by this MIT License.
+
+Laws of the Game content is derived from the [IFAB Laws of the Game 2025/26](https://www.theifab.com/laws-of-the-game/) — paraphrased, not reproduced verbatim.
+
+---
+
 *Built for the IBM SkillsBuild AI Builders Challenge, June 2026 — "AI Inside the Match"*
-*MIT License · Data: StatsBomb Open Data (StatsBomb Public Data User Agreement) · Laws: IFAB Laws of the Game 2025/26*
